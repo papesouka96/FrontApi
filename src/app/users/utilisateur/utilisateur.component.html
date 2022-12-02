@@ -1,1 +1,19 @@
-<p style="color:red ;">utilisateur works!</p>
+<table class="table table-striped">
+    <thead>
+        <th>prenom</th>
+        <th>nom</th>
+        <th>email</th>
+        <th>role</th>
+  
+    </thead>
+
+    <tbody class="tbody">
+        <tr *ngFor="let user of users">
+            <td>{{user.prenom}}</td>
+            <td>{{user.nom}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.roles}}</td>
+           
+        </tr>
+    </tbody>
+</table>
