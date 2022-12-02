@@ -1,19 +1,73 @@
-
-<!-- <table class="table table-stripped">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <div class="container"  *ngIf="!showForm">
+<nav id="nav">  
+   
+        <div class="bouton">
+        <input id="search" class="form-control" type="text" name="" placeholder="Rechercher">
+        <button class="d" name="valider" type="submit">RECHERCHE</button>
+        </div> 
+</nav> 
+    
+ 
+      <table class="table table-bordered ">  
     <thead>
-        <th>nom</th>
-        <th>prenom</th>
-        <th>email</th>
-        <th>matricule</th>
-    </thead>
-    <tbody class="tbody">
-        <tr *ngFor="let user of users">
-            <td>{{user.nom}}</td>
-            <td>{{user.prenom}}</td>
-            <td>{{user.email}}</td>
-            <td>{{user.matricule}}</td>
+      <tr class="bg-primary" >
+        <th scope="col">MATRICULE</th>
+        <th scope="col">NOM</th>
+        <th scope="col">PRENOM</th>
+        <th scope="col">EMAIL</th>
+        <th scope="col">ROLES</th>
+        <th scope="col">ACTION</th>
+      </tr>
+    </thead>     
+          <tbody class="tbody">    
+         <tr *ngFor="let user of users">  
+          <td>{{user.matricule}}</td> 
+          <td>{{user.nom}}</td> 
+          <td>{{user.prenom}}</td>             
+          <td>{{user.email}}</td>           
+          <td>{{user.roles}}</td>
+      <td> 
+        <span class="btn btn-outline-danger" title="supprimer"><i class="bi bi-trash-fill" id="i1" ></i></span>
+        <span  class="btn btn-outline-primary" title="modifier"><i class="bi bi-pen-fill" id="i2" (click)="getUserData(user._id,user.email,user.prenom,user.nom)"></i></span>
+        <span  class="btn btn-outline-primary" title="changer"><i class="bi bi-arrow-clockwise" (click)="changeRole(user._id,user.roles)"></i></span></td> 
+                      
+        </tr>   
+        </tbody>
+     </table>
+   </div>  
+   
+   
 
-        </tr>
-    </tbody>
-</table>
- -->
+
+  <form *ngIf="showForm" [formGroup]="userEditForm" (ngSubmit)="modifUsers()">
+    <input type="text" formControlName="id"  hidden>
+  <div class="mb-3">
+    <label for="nom" class="form-label">NOM</label>
+    <input type="text" class="form-control"  formControlName="nom"  aria-describedby="emailHelp">
+   
+  </div>
+  <div class="mb-3">
+    <label for="prenom" class="form-label">PRENOM</label>
+    <input type="text" class="form-control" formControlName="prenom">
+  </div>
+  <div class="mb-3">
+      <label class="form-label" for="email">EMAIL</label>
+    <input type="email" class="form-control" formControlName="email">
+  
+  </div>
+  <button type="submit" class="btn btn-primary">ENREGISTRER</button>
+</form> 
+   
+
+
+</body>
+</html>

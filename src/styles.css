@@ -3,12 +3,35 @@
 @import "node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 .container{
-    background-color:blue;
-    height:150px;
+    background-color:whitesmoke;
     display: flex;
     flex-wrap: wrap;
+    margin: 70px;
+  justify-content: end;
    
+
+}
+
+#nav{
+    display: flex;
+    flex-wrap: wrap;
+   margin: 20px; 
+   padding: 20px;
+}
+body{
    
+    display: flex;
+    justify-content: center;
+}
+#tab{
+    width: 70%;
+  
+}
+#i1{
+    color: red;
+}
+#i2{
+    color: green;
 }
 h5{
     color:white ;
