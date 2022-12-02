@@ -1,1 +1,48 @@
-<p style="color:red ;">utilisateur works!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <div class="container">
+<nav id="nav">  
+   
+        <div class="bouton">
+        <input id="search" class="form-control" type="text" name="" placeholder="Rechercher">
+        <button class="d" name="valider" type="submit">RECHERCHE</button>
+        </div> 
+</nav> 
+    
+ 
+      <table class="table table-bordered ">  
+    <thead>
+      <tr class="bg-primary" >
+        <th scope="col">MATRICULE</th>
+        <th scope="col">NOM</th>
+        <th scope="col">PRENOM</th>
+        <th scope="col">EMAIL</th>
+        <th scope="col">ROLES</th>
+        <th scope="col">ACTION</th>
+      </tr>
+    </thead>     
+          <tbody class="tbody">    
+         <tr *ngFor="let user of users">  
+          <td>{{user.matricule}}</td> 
+          <td>{{user.nom}}</td> 
+          <td>{{user.prenom}}</td>             
+          <td>{{user.email}}</td>           
+          <td>{{user.roles}}</td>
+      <td> 
+        <span class="btn btn-outline-danger" title="supprimer"><i class="bi bi-trash-fill" id="i1" ></i></span>
+        <span  class="btn btn-outline-primary" title="modifier"><i class="bi bi-pen-fill" id="i2"></i></span>
+        <span  class="btn btn-outline-primary" title="changer"><i class="bi bi-arrow-clockwise"></i></span></td> 
+                      
+        </tr>   
+        </tbody>
+     </table>
+   </div>         
+</body>
+</html>
