@@ -9,7 +9,9 @@
     margin: 70px;
   justify-content: end;
    
+
 }
+
 #nav{
     display: flex;
     flex-wrap: wrap;
