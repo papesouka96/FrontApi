@@ -10,7 +10,12 @@ import { UsersService } from 'src/app/services/users.service';
 
 export class UtilisateurComponent implements OnInit {
 
-users: any; userEditForm : FormGroup; showForm = false;
+users: any;
+userEditForm : FormGroup;
+showForm = false; 
+p: number= 1;
+ itemsperpage: number= 5;
+totalUser:any; 
 
   constructor(private userService : UsersService, private formBuilder : FormBuilder){
     this.userEditForm = this.formBuilder.group({
@@ -30,6 +35,13 @@ ngOnInit(): void {
                console.log(this.users)
               }
 );
+}
+
+retrieveData(){
+  this.userService.getUsers().subscribe((data:any)=>{
+    this.users = data;
+     this.totalUser = data.length; 
+  })
 }
 
 changeRole=(id:any,roles:any)=> {
