@@ -21,6 +21,12 @@ export class UsersService {
   };
 
 
+  deleteId(id:any,user: User){
+   
+    return this.httpClient.delete<User>(`${env.apiUrl}/delete/${id}`);
+  };
+
+
   modifUsers(id:any,user: User){
    
     return this.httpClient.patch<User>(`${env.apiUrl}/update/${id}`,user);

@@ -36,7 +36,7 @@
           <td>{{user.email}}</td>           
           <td>{{user.roles}}</td>
       <td> 
-        <span class="btn btn-outline-danger" title="supprimer"><i class="bi bi-trash-fill" id="i1" ></i></span>
+        <span class="btn btn-outline-danger" title="supprimer"><i class="bi bi-trash-fill" id="i1" (click)="deleteId(user._id,user.etat)" ></i></span>
         <span  class="btn btn-outline-primary" title="modifier"><i class="bi bi-pen-fill" id="i2" (click)="getUserData(user._id,user.email,user.prenom,user.nom)"></i></span>
         <span  class="btn btn-outline-primary" title="changer"><i class="bi bi-arrow-clockwise" (click)="changeRole(user._id,user.roles)"></i></span></td> 
                       

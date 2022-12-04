@@ -48,6 +48,23 @@ changeRole=(id:any,roles:any)=> {
  );
 }
 
+
+deleteId=(id:any,etat:any)=> {
+etat == "0" ? etat ="1":etat= "0"
+
+ const user ={
+ etat : etat
+
+ }
+
+ this.userService.deleteId(id,user).subscribe(
+
+  data=>{
+    this.ngOnInit();
+  }
+ );
+}
+
 getUserData(id:any,email:any,prenom:any,nom:any){
   this.showForm = true;
   this.userEditForm = this.formBuilder.group({
