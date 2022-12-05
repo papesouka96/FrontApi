@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -10,23 +10,29 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './users/header/header.component';
 import { UtilisateurComponent } from './users/utilisateur/utilisateur.component';
 import { ModificationComponent } from './modification/modification.component';
+import { SimpleusersComponent } from "./users/simpleusers/simpleusers.component";
+// import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    UtilisateurComponent,
-    ModificationComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule, 
-    FormsModule, 
-   ReactiveFormsModule 
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        HeaderComponent,
+        UtilisateurComponent,
+        ModificationComponent,
+        SimpleusersComponent,
+        
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        FormsModule,
+        ReactiveFormsModule,
+        
+        /* SimpleusersComponent */
+    ]
 })
 export class AppModule {}

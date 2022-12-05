@@ -8,6 +8,7 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class SimpleusersComponent implements OnInit {
 users:any;
+showForm: any;
   constructor(private userService : UsersService){}
 
   ngOnInit(): void {
