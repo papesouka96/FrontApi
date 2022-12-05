@@ -7,21 +7,24 @@ import { HeaderComponent } from './users/header/header.component';
 import { UtilisateurComponent } from './users/utilisateur/utilisateur.component';
 import { InscrptionComponent } from './inscrption/inscrption.component';
 //
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PageConnexionComponent } from './page-connexion/page-connexion.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     UtilisateurComponent,
-    InscrptionComponent
+    InscrptionComponent,
+    PageConnexionComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-ReactiveFormsModule,
+//
     FormsModule,
+    ReactiveFormsModule
  
 
   ],
