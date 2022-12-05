@@ -10,13 +10,15 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './users/header/header.component';
 import { UtilisateurComponent } from './users/utilisateur/utilisateur.component';
 import { ModificationComponent } from './modification/modification.component';
+import { PageArchiveComponent } from './page-archive/page-archive.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     UtilisateurComponent,
-    ModificationComponent
+    ModificationComponent,
+    PageArchiveComponent
   ],
   imports: [
     BrowserModule,
