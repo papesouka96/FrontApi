@@ -8,14 +8,15 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./utilisateur.component.css']
 })
 
-export class UtilisateurComponent implements OnInit {
-
+export class UtilisateurComponent implements OnInit { 
 users: any;
 userEditForm : FormGroup;
 showForm = false; 
 p: number= 1;
- itemsperpage: number= 5;
+itemsperpage: number= 5;
 totalUser:any; 
+searchText:any;
+user = [];
 
   constructor(private userService : UsersService, private formBuilder : FormBuilder){
     this.userEditForm = this.formBuilder.group({
@@ -35,6 +36,7 @@ ngOnInit(): void {
                console.log(this.users)
               }
 );
+
 }
 
 retrieveData(){
@@ -43,6 +45,7 @@ retrieveData(){
      this.totalUser = data.length; 
   })
 }
+
 
 changeRole=(id:any,roles:any)=> {
  roles == "admin" ? roles ="utilisateur": roles = "admin"

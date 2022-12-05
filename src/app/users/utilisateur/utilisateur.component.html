@@ -13,8 +13,7 @@
 <nav id="nav">  
    
         <div class="bouton">
-        <input id="search" class="form-control" type="text" name="" placeholder="Rechercher">
-        <button class="d" name="valider" type="submit">RECHERCHE</button>
+        <input id="search" class="form-control" type="text" name="search" placeholder="Rechercher" [(ngModel)]="searchText">
         </div> 
 </nav> 
     
@@ -32,7 +31,7 @@
       </tr>
     </thead>     
           <tbody class="tbody">    
-         <tr *ngFor="let user of users | paginate: { itemsPerPage:  itemsperpage, currentPage: p}">  
+         <tr *ngFor="let user of users | paginate: { itemsPerPage:  itemsperpage, currentPage: p} |filter:searchText">  
           <td>{{user.matricule}}</td> 
           <td>{{user.nom}}</td> 
           <td>{{user.prenom}}</td>             

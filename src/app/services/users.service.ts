@@ -8,6 +8,10 @@ import { User } from '../models/user';
   providedIn: 'root'
 })
 export class UsersService {
+  nom: unknown;
+  users: any;
+  user: any;
+  firstName: any;
 
   constructor(private httpClient : HttpClient) { }
 

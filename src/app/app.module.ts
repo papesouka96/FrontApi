@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import {NgxPaginationModule} from 'ngx-pagination';
-
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -25,7 +25,8 @@ import { ModificationComponent } from './modification/modification.component';
     FormsModule, 
     FormsModule, 
    ReactiveFormsModule,
-   NgxPaginationModule
+   NgxPaginationModule,
+   Ng2SearchPipeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
