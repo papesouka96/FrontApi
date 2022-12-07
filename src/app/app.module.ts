@@ -11,6 +11,7 @@ import { HeaderComponent } from './users/header/header.component';
 import { UtilisateurComponent } from './users/utilisateur/utilisateur.component';
 import { ModificationComponent } from './modification/modification.component';
 import { PageArchiveComponent } from './page-archive/page-archive.component';
+import { ProfilComponent } from './profil/profil.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { PageArchiveComponent } from './page-archive/page-archive.component';
     HeaderComponent,
     UtilisateurComponent,
     ModificationComponent,
-    PageArchiveComponent
+    PageArchiveComponent,
+    ProfilComponent
   ],
   imports: [
     BrowserModule,

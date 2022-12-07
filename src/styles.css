@@ -8,9 +8,36 @@
     flex-wrap: wrap;
     margin: 70px;
   justify-content: center;
-   
-
+  width: 100%;
 }
+
+
+
+#le{
+     position: relative; 
+    width: 100%;
+    display: flex;
+    left:750px;
+    height: 100%;
+    margin: 0;
+}
+
+.pro{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;  
+}
+/* .container-fluid{
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    display: flex;
+    height: 100px;
+    position: relative;
+    margin: auto;
+    border-radius: 5px;
+    overflow: hidden;
+} */
 
 
 #nav{
@@ -20,9 +47,11 @@
    padding: 20px;
 }
 body{
+   font-family: Arial;
+  
+    margin: 0;
+    padding: 0;
    
-    display: flex;
-    justify-content: center;
 }
 #tab{
     width: 70%;

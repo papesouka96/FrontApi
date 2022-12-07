@@ -51,7 +51,7 @@ retrieveData(){
 
 ddeleteId=(id:any,etat:any)=> {
   
-  etat == "false" ? etat = true : etat = false
+  etat == true ? etat = false : etat = true
   
    const user ={
    etat : etat
