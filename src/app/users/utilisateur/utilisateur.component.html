@@ -31,7 +31,10 @@
       </tr>
     </thead>     
           <tbody class="tbody">    
+
          <tr *ngFor="let user of userActif | paginate: { itemsPerPage:  itemsperpage, currentPage: p} |filter:searchText">  
+
+
           <td>{{user.matricule}}</td> 
           <td>{{user.nom}}</td> 
           <td>{{user.prenom}}</td>             
