@@ -11,6 +11,9 @@ date_archive?:Date;
 photo?:String;
 password?:String;
 password2?:String;
+data?:{
+    token:String;
+}
 
 
 }
