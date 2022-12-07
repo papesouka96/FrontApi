@@ -12,6 +12,10 @@ import { UtilisateurComponent } from './users/utilisateur/utilisateur.component'
 import { ModificationComponent } from './modification/modification.component';
 import { PageArchiveComponent } from './page-archive/page-archive.component';
 import { ProfilComponent } from './profil/profil.component';
+import { CommonModule } from '@angular/common';
+import { InscrptionComponent } from './inscrption/inscrption.component';
+import { LoginComponent } from './login/login.component';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +24,10 @@ import { ProfilComponent } from './profil/profil.component';
     UtilisateurComponent,
     ModificationComponent,
     PageArchiveComponent,
-    ProfilComponent
+    ProfilComponent,
+    InscrptionComponent,
+    LoginComponent,
+   /*  Pageconnexion.Component */
   ],
   imports: [
     BrowserModule,
@@ -30,7 +37,11 @@ import { ProfilComponent } from './profil/profil.component';
     FormsModule, 
    ReactiveFormsModule,
    NgxPaginationModule,
-   Ng2SearchPipeModule
+   Ng2SearchPipeModule,
+   CommonModule,
+  
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]
