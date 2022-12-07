@@ -8,28 +8,27 @@
 </head>
 <body>
   <div class="container"  *ngIf="!showForm">
-<nav id="nav">  
+    <nav id="nav">  
    
-        <div class="bouton">
-        <input id="search" class="form-control" type="text" name="" placeholder="Rechercher">
-        <button class="d" name="valider" type="submit">RECHERCHE</button>
-        </div> 
+      <div class="bouton">
+      <input id="search" class="form-control" type="text" name="search" placeholder="Rechercher" [(ngModel)]="searchText">
+      </div> 
 </nav> 
     
  
       <table class="table table-bordered ">  
     <thead>
       <tr class="bg-primary" >
-        <th scope="col">MATRICULE</th>
+        <th scope="col">MATRiCULE</th>
         <th scope="col">NOM</th>
         <th scope="col">PRENOM</th>
         <th scope="col">EMAIL</th>
-        <th scope="col">ROLES</th>
-        <th scope="col">date d'ajout</th>
+        <th scope="col">ROLE</th>
+        <th scope="col">DATE</th>
       </tr>
     </thead>     
           <tbody class="tbody">    
-         <tr *ngFor="let user of users">  
+         <tr *ngFor="let user of users | paginate: { itemsPerPage:  itemsperpage, currentPage: p} | filter:searchText">  
           <td>{{user.matricule}}</td> 
           <td>{{user.nom}}</td> 
           <td>{{user.prenom}}</td>             
@@ -44,6 +43,11 @@
         </tr>   
         </tbody>
      </table>
+     <div class="mt-8 py-5">
+      <div>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
+   </div>
    </div>  
    
    

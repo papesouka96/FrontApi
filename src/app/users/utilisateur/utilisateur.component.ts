@@ -8,9 +8,15 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./utilisateur.component.css']
 })
 
-export class UtilisateurComponent implements OnInit {
-
-users: any; userEditForm : FormGroup; showForm = false;
+export class UtilisateurComponent implements OnInit { 
+users: any;
+userEditForm : FormGroup;
+showForm = false; 
+p: number= 1;
+itemsperpage: number= 5;
+totalUser:any; 
+searchText:any;
+user = [];
 
   constructor(private userService : UsersService, private formBuilder : FormBuilder){
     this.userEditForm = this.formBuilder.group({
@@ -30,7 +36,16 @@ ngOnInit(): void {
                console.log(this.users)
               }
 );
+
 }
+
+retrieveData(){
+  this.userService.getUsers().subscribe((data:any)=>{
+    this.users = data;
+     this.totalUser = data.length; 
+  })
+}
+
 
 changeRole=(id:any,roles:any)=> {
  roles == "admin" ? roles ="utilisateur": roles = "admin"
@@ -41,6 +56,23 @@ changeRole=(id:any,roles:any)=> {
  }
 
  this.userService.changeRole(id,user).subscribe(
+
+  data=>{
+    this.ngOnInit();
+  }
+ );
+}
+
+
+deleteId=(id:any,etat:any)=> {
+etat == "0" ? etat ="1":etat= "0"
+
+ const user ={
+ etat : etat
+
+ }
+
+ this.userService.deleteId(id,user).subscribe(
 
   data=>{
     this.ngOnInit();

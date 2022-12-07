@@ -7,10 +7,11 @@
     display: flex;
     flex-wrap: wrap;
     margin: 70px;
-  justify-content: end;
+  justify-content: center;
    
 
 }
+
 
 #nav{
     display: flex;
@@ -55,6 +56,15 @@ justify-content: center;
     width:50%;
 
 }
+/* ::ng-deep{ */
+    .ngx-pagination{
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 4px;
+    }
+    
+
 
 .bouton{
     display: flex;

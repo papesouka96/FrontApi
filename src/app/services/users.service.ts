@@ -8,6 +8,10 @@ import { User } from '../models/user';
   providedIn: 'root'
 })
 export class UsersService {
+  nom: unknown;
+  users: any;
+  user: any;
+  firstName: any;
 
   constructor(private httpClient : HttpClient) { }
 
@@ -18,6 +22,12 @@ export class UsersService {
   changeRole(id:any,user: User){
    
     return this.httpClient.patch<User>(`${env.apiUrl}/update/${id}`,user);
+  };
+
+
+  deleteId(id:any,user: User){
+   
+    return this.httpClient.delete<User>(`${env.apiUrl}/delete/${id}`);
   };
 
 

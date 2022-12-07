@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -8,7 +9,14 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class SimpleusersComponent implements OnInit {
 users:any;
-showForm: any;
+/* showForm: any; */
+  /* userEditForm: FormGroup; */
+showForm = false; 
+p: number= 1;
+itemsperpage: number= 5;
+totalUser:any; 
+searchText:any;
+user = [];
   constructor(private userService : UsersService){}
 
   ngOnInit(): void {
