@@ -133,15 +133,15 @@
 </html>
  -->
 
- <div class="container w-100 p-3 col-md-5 mb-8">
+ <div class="container w-100 p-3 col-md-5">
   <!--   controle mot de pass// -->
     
   <!--   /// -->
     <h1>FORMULAIRE D'INSCRIPTION</h1>
    
       <form id="form" class="row g-3 d-flex justify-content-center no-wrap m-2 bg-light" (submit)="onSubmit()"[formGroup]="registerForm" >
-        <div *ngIf="!verifPass" class="text text-danger">
-            Les  mots de passe ne correspondent pas !
+        <div *ngIf="!verifPass" class="d-flex justify-content-center text text-danger" id="">
+            <span>Les  mots de passe ne correspondent pas !</span>
         </div>
           <div class="col-md-6">
           <div class="input-control">
@@ -215,10 +215,10 @@
           <div class="col-md-6">
           <div class="input-control">
               <label for="password">Password</label>
-              <input id="pass1"name="password"  class=" p-3 rounded-0" type="password"  placeholder="password"
+              <input id="pass1" name="password"  class=" p-3 rounded-0" type="password"  placeholder="password"
 
               [ngClass]="{'is-invalid':submitted && registerForm.controls['password'].errors}"
-              formControlName="password" type="password" class="form-control" id="pass2">
+              formControlName="password" type="password" class="form-control">
           <div *ngIf="submitted && registerForm.controls['password'].errors" class="text-danger" >
               <div *ngIf="submitted && registerForm.controls['password'].errors required">
                   Ce champ est  require
@@ -235,7 +235,7 @@
           <div class="input-control">
               <label for="password2">Password again</label>
               <input [ngClass]="{'is-invalid':submitted && registerForm.controls['passwordc'].errors}" placeholder="password2"
-              formControlName="passwordc" type="passwordc" class="form-control"  id="pass2" #pass2 (change)="checkPassword()">
+              formControlName="passwordc" type="password" class="form-control"  id="pass2" #pass2 (change)="checkPassword()">
           <div *ngIf="submitted && registerForm.controls['passwordc'].errors" class="text-danger">
               <div *ngIf="submitted && registerForm.controls['passwordc'].errors required">
                   Ce champ est  require
@@ -256,7 +256,8 @@
   
                    </div>
                     <button type="submit" name="submit" id="button">S'INSCRIRE</button>
-                      <a href="" id="conn">CONNEXION</a>
+                      
+                    <div class="connexion"><a href="" id="conn">CONNEXION ?</a></div>
                   
    
   </div>
