@@ -2,18 +2,42 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user';
 import { env } from 'src/env';
+import { BehaviorSubject, map } from 'rxjs';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
-  nom: unknown;
-  users: any;
-  user: any;
-  firstName: any;
+  private currentUserSubject: BehaviorSubject<User>;
 
-  constructor(private httpClient : HttpClient) { }
+  constructor(private httpClient:HttpClient) {
+    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse((localStorage.getItem('currentUser')!)));
+  }
+
+  public get currentUserValue(): User {
+    return this.currentUserSubject.value;
+  }
+
+  getConnexion(user:User){
+    return this.httpClient.post<User>(`${env.apiUrl}/login`,user).
+      pipe(map(user => {
+        // store user details and jwt token in local storage to keep user logged in between page refreshes
+        console.log(user.data?.token)
+        localStorage.setItem('currentUser', JSON.stringify(user.data?.token));
+        this.currentUserSubject.next(user);
+        return user;
+      }));
+
+  }
+
+  getLoggedIn(){
+
+    if(!this.currentUserValue) {
+      return false;
+    }
+    return true;
+  }
 
   getUsers(){
     return this.httpClient.get(`${env.apiUrl}/getAll`)

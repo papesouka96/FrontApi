@@ -13,6 +13,8 @@ import { ModificationComponent } from './modification/modification.component';
 import { SimpleusersComponent } from "./users/simpleusers/simpleusers.component";
 import { CommonModule } from '@angular/common';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { LoginComponent } from './login/login.component';
+import { InscrptionComponent } from './inscrption/inscrption.component';
  
 
 @NgModule({
@@ -22,7 +24,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
         UtilisateurComponent,
         ModificationComponent,
         SimpleusersComponent,
-        
+        LoginComponent,
+        InscrptionComponent
     ],
     providers: [],
     bootstrap: [AppComponent],

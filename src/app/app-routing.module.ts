@@ -6,13 +6,14 @@ import { PageArchiveComponent } from './page-archive/page-archive.component';
 import { ProfilComponent } from './profil/profil.component';
 import { UtilisateurComponent } from './users/utilisateur/utilisateur.component';
 import { LoginComponent } from './login/login.component';
+import { SimpleusersComponent } from './users/simpleusers/simpleusers.component';
+
 const routes: Routes = [
 {path: "pageArchive" , component: PageArchiveComponent},
 {path: "admin", component: UtilisateurComponent},
 {path: "profil", component: ProfilComponent},
-
+{path: "user", component: SimpleusersComponent},
 {path:"inscription", component: InscrptionComponent},
-
 {path:"login", component: LoginComponent}
 
 ];
