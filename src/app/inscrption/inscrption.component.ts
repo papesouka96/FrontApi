@@ -77,8 +77,11 @@ console.log(new Date().toISOString())
    email : this.registerForm.value. email,
    roles : this.registerForm.value. roles,
    password: this.registerForm.value. password,
-   matricule : Math.random().toString(26).slice(2),
+   matricule :  Math.floor((1 + Math.random()) * 0x10000)
+   .toString(16)
+   .substring(1),
       
+   
    date_inscri: new Date().toISOString(),
    etat: true
   }
