@@ -7,27 +7,24 @@
     <title>Document</title>
 </head>
 <body>
-
-
   <div class="container"  *ngIf="!showForm">
-<nav id="nav">  
+    <nav id="nav">  
    
-        <div class="bouton">
-        <input id="search" class="form-control" type="text" name="search" placeholder="Rechercher" [(ngModel)]="searchText">
-        </div> 
+      <div class="bouton">
+      <input id="search" class="form-control" type="text" name="search" placeholder="Rechercher" [(ngModel)]="searchText">
+      </div> 
 </nav> 
     
  
-      <table class="table table-bordered " >  
+      <table class="table table-bordered ">  
     <thead>
-      <tr class="bg-primary" > 
-       
-        <th scope="col">MATRICULE</th>
+      <tr class="bg-primary" >
+        <th scope="col">MATRiCULE</th>
         <th scope="col">NOM</th>
         <th scope="col">PRENOM</th>
         <th scope="col">EMAIL</th>
-        <th scope="col">ROLES</th>
-        <th scope="col">ACTION</th>
+        <th scope="col">ROLE</th>
+        <th scope="col">DATE</th>
       </tr>
     </thead>     
           <tbody class="tbody">    
@@ -37,15 +34,15 @@
           <td>{{user.prenom}}</td>             
           <td>{{user.email}}</td>           
           <td>{{user.roles}}</td>
-      <td> 
-        <span class="btn btn-outline-danger" title="supprimer"><i class="bi bi-trash-fill" id="i1" (click)="deleteId(user._id,user.etat)" ></i></span>
+          <td>{{user.date_inscri}}</td>
+     <!--  <td> 
+        <span class="btn btn-outline-danger" title="supprimer"><i class="bi bi-trash-fill" id="i1" ></i></span>
         <span  class="btn btn-outline-primary" title="modifier"><i class="bi bi-pen-fill" id="i2" (click)="getUserData(user._id,user.email,user.prenom,user.nom)"></i></span>
         <span  class="btn btn-outline-primary" title="changer"><i class="bi bi-arrow-clockwise" (click)="changeRole(user._id,user.roles)"></i></span></td> 
-                      
+                       -->
         </tr>   
         </tbody>
      </table>
-
      <div class="mt-8 py-5">
       <div>
         <pagination-controls (pageChange)="p = $event"></pagination-controls>
@@ -54,9 +51,10 @@
    </div>  
    
    
+   
 
 
-  <form *ngIf="showForm" [formGroup]="userEditForm" (ngSubmit)="modifUsers()">
+  <!-- <form *ngIf="showForm" [formGroup]="userEditForm" (ngSubmit)="modifUsers()">
     <input type="text" formControlName="id"  hidden>
   <div class="mb-3">
     <label for="nom" class="form-label">NOM</label>
@@ -73,7 +71,7 @@
   
   </div>
   <button type="submit" class="btn btn-primary">ENREGISTRER</button>
-</form> 
+</form>  -->
    
 
 
