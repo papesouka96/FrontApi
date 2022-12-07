@@ -3,12 +3,36 @@
 @import "node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 .container{
-    background-color:blue;
-    height:150px;
+    background-color:whitesmoke;
     display: flex;
     flex-wrap: wrap;
+    margin: 70px;
+  justify-content: center;
    
+
+}
+
+
+#nav{
+    display: flex;
+    flex-wrap: wrap;
+   margin: 20px; 
+   padding: 20px;
+}
+body{
    
+    display: flex;
+    justify-content: center;
+}
+#tab{
+    width: 70%;
+  
+}
+#i1{
+    color: red;
+}
+#i2{
+    color: green;
 }
 h5{
     color:white ;
@@ -32,6 +56,15 @@ justify-content: center;
     width:50%;
 
 }
+/* ::ng-deep{ */
+    .ngx-pagination{
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 4px;
+    }
+    
+
 
 .bouton{
     display: flex;
