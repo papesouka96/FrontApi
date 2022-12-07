@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './users/header/header.component';
 import { UtilisateurComponent } from './users/utilisateur/utilisateur.component';
 import { ModificationComponent } from './modification/modification.component';
+<<<<<<< HEAD
 import { SimpleusersComponent } from "./users/simpleusers/simpleusers.component";
 import { CommonModule } from '@angular/common';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
@@ -39,5 +40,38 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
         Ng2SearchPipeModule
 
     ]
+=======
+import { CommonModule } from '@angular/common';
+import { InscrptionComponent } from './inscrption/inscrption.component';
+import { LoginComponent } from './login/login.component';
+
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    UtilisateurComponent,
+    ModificationComponent,
+    InscrptionComponent,
+    LoginComponent,
+   /*  Pageconnexion.Component */
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule, 
+    FormsModule, 
+   ReactiveFormsModule,
+   NgxPaginationModule,
+   Ng2SearchPipeModule,
+   CommonModule,
+  
+
+
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+>>>>>>> 7aff8e3f23fc1aed07aa164acfe9b59dd23708ba
 })
 export class AppModule {}

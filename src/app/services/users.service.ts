@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
-import { env } from 'src/env'
 import { User } from '../models/user';
+import { env } from 'src/env';
+
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +34,10 @@ export class UsersService {
   modifUsers(id:any,user: User){
    
     return this.httpClient.patch<User>(`${env.apiUrl}/update/${id}`,user);
+  }
+
+  addUsers(user: User){
+    return this.httpClient.post<User>(`${env.apiUrl}/post`,user);
   }
 }
 
