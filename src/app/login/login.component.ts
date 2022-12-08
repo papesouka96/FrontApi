@@ -39,22 +39,22 @@ this.submitted = true
 } 
 
  /* /insertion sur la base de données/ */
- /*  const user ={
+  const user ={
  
    email : this.registerForm.value. email,
    password: this.registerForm.value. password,
   
   }
- */
-  /* console.log(user)
 
-  this.userService.addUsers(user).subscribe(
+  console.log(user)
+
+  this.userService.getConnexion(user).subscribe(
     data=>{
       this.ngOnInit();
     
     }
    );
- */
+
 
 
 

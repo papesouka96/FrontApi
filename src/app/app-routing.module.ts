@@ -4,12 +4,13 @@ import { InscrptionComponent } from './inscrption/inscrption.component';
 import { ModificationComponent } from './modification/modification.component';
 import { UtilisateurComponent } from './users/utilisateur/utilisateur.component';
 import { LoginComponent } from './login/login.component';
+import { SimpleusersComponent } from './users/simpleusers/simpleusers.component';
 const routes: Routes = [
 
 {path:"inscription", component: InscrptionComponent},
 {path:"user", component: UtilisateurComponent},
-
-{path:"login", component: LoginComponent}
+{path:"simpleusers", component: SimpleusersComponent},
+{path:"login", component: LoginComponent},
 
 ];
 
