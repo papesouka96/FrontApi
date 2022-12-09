@@ -21,11 +21,15 @@ export class UsersService {
   }
 
   getConnexion(user:User){
+    let userLogin;
     return this.httpClient.post<User>(`${env.apiUrl}/login`,user).
       pipe(map(user => {
         console.log(user.data?.token)
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('currentUser', JSON.stringify(user.data?.token));
+        userLogin = user.data?.email;
+        localStorage.setItem('userEmail', userLogin);
+
         this.currentUserSubject.next(user);
         return user;
       }));
@@ -59,3 +63,5 @@ export class UsersService {
     return this.httpClient.post<User>(`${env.apiUrl}/post`,user);
   }
 }
+
+

@@ -16,7 +16,10 @@ export class ProfilComponent implements OnInit {
   itemsperpage: number= 5;
   totalUser:any; 
   searchText:any;
-  user = []; userActif:any = [];
+  user:any; userActif:any;
+  verifPass:any = true;
+  registerForm!:FormGroup;
+  submitted = false;
   
     constructor(private userService : UsersService, private formBuilder : FormBuilder){
       this.userEditForm = this.formBuilder.group({
@@ -34,7 +37,7 @@ export class ProfilComponent implements OnInit {
   
           this.users = data;
   
-          this.userActif = this.users.filter((e:any)=> e.etat == true)
+          this.userActif = this.users.filter((e:any)=> e.etat == true && e.email == localStorage.getItem('userEmail'))
           console.log(this.userActif)
         }
   ); 
@@ -42,13 +45,17 @@ export class ProfilComponent implements OnInit {
   }
  
 
-  getUserData(id:any,photo:any,password:any,password2:any){
+  getUserData(){
     this.showForm = true;
+    let id;
+    for (const iterator of this.userActif) {
+     id = iterator._id
+    }
+    console.log(id)
     this.userEditForm = this.formBuilder.group({
         id:[id],
-        photo: [photo, [Validators.required]],
-        password: [password, [Validators.required]],
-        password2: [password2, [Validators.required]],
+        password: ["", [Validators.required]],
+        password2: ["", [Validators.required]],
       });
     console.log(id)
   }
@@ -72,6 +79,31 @@ export class ProfilComponent implements OnInit {
     }
    );
   }
+
+  checkPassword=()=>{
+
+    let pass1 = (<HTMLInputElement>document.getElementById("pass1")).value;
+    let pass2 = (<HTMLInputElement>document.getElementById("pass2")).value;
+
+    console.log(pass1 != pass2)
+
+    if( pass1 != pass2)
+    {
+      this.verifPass = false;
+      this.registerForm = this.formBuilder.group(
+        {
+
+        password:[''],
+        password2:[''],
+
+      })
+
+      setTimeout(()=>{ this.verifPass = true}, 3001);
+    }
+ }
+
+
+
   
   }
   

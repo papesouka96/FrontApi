@@ -13,6 +13,7 @@ password?:String;
 password2?:String;
 data?:{
     token:String;
+    email:any
 }
 
 

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import {NgxPaginationModule} from 'ngx-pagination';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -10,44 +10,41 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './users/header/header.component';
 import { UtilisateurComponent } from './users/utilisateur/utilisateur.component';
 import { ModificationComponent } from './modification/modification.component';
-
-import { PageArchiveComponent } from './page-archive/page-archive.component';
-import { ProfilComponent } from './profil/profil.component';
-
+import { SimpleusersComponent } from "./users/simpleusers/simpleusers.component";
 import { CommonModule } from '@angular/common';
-import { InscrptionComponent } from './inscrption/inscrption.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { LoginComponent } from './login/login.component';
-
-
+import { InscrptionComponent } from './inscrption/inscrption.component';
+import { ProfilComponent } from './profil/profil.component';
+import { PageArchiveComponent } from './page-archive/page-archive.component';
+ 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    UtilisateurComponent,
-    ModificationComponent,
-    PageArchiveComponent,
-    ProfilComponent,
-    InscrptionComponent,
-    LoginComponent
-   /*  Pageconnexion.Component */
+    declarations: [
+        AppComponent,
+        HeaderComponent,
+        UtilisateurComponent,
+        ModificationComponent,
+        SimpleusersComponent,
+        LoginComponent,
+        InscrptionComponent,
+        ProfilComponent,
+        PageArchiveComponent
+        
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        FormsModule,
+        ReactiveFormsModule,  
+        NgxPaginationModule,
+        CommonModule,
+        Ng2SearchPipeModule
 
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule, 
-    FormsModule, 
-   ReactiveFormsModule,
-   NgxPaginationModule,
-   Ng2SearchPipeModule,
-   CommonModule,
-  
-
-
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    ]
 })
-export class AppModule { }
+export class AppModule {}
