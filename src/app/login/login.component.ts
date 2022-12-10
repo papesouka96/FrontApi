@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
 /* import { Person } from './Person'; */
 
@@ -15,7 +16,7 @@ export class LoginComponent {
   title = 'angularvalidate';
   submitted = false;
 
-  constructor(private userService : UsersService, private formBuilder: FormBuilder ,) {
+  constructor(private userService : UsersService, private formBuilder: FormBuilder ,private route: Router) {
     
   }
   ngOnInit() {
@@ -50,7 +51,12 @@ this.submitted = true
 
   this.userService.getConnexion(user).subscribe(
     data=>{
-      this.ngOnInit();
+      console.log(data.data?.roles)
+      if (data.data?.roles == "Administrateur" || data.data?.roles == "admin") {
+          this.route.navigateByUrl('admin')
+      } else {
+        this.route.navigateByUrl('user')
+      }
     }
    );
  

@@ -139,7 +139,7 @@
   <!--   /// -->
     <h1>FORMULAIRE D'INSCRIPTION</h1>
    
-      <form id="form" class="row g-3 d-flex justify-content-center no-wrap m-2 bg-light" (submit)="onSubmit()"[formGroup]="registerForm" >
+      <form id="form" class="row g-3 d-flex justify-content-center no-wrap m-2 bg-light" (submit)="onSubmit()" [formGroup]="registerForm" >
         <div *ngIf="!verifPass" class="text text-danger">
             Les  mots de passe ne correspondent pas !
         </div>
@@ -235,7 +235,7 @@
           <div class="input-control">
               <label for="password2">Password again</label>
               <input [ngClass]="{'is-invalid':submitted && registerForm.controls['passwordc'].errors}" placeholder="password2"
-              formControlName="passwordc" type="passwordc" class="form-control"  id="pass2" #pass2 (change)="checkPassword()">
+              formControlName="passwordc" type="password" class="form-control"  id="pass2" #pass2 (change)="checkPassword()">
           <div *ngIf="submitted && registerForm.controls['passwordc'].errors" class="text-danger">
               <div *ngIf="submitted && registerForm.controls['passwordc'].errors required">
                   Ce champ est  require
@@ -252,7 +252,7 @@
               <label for="avatar"></label>
                <input type="file"
                  id="photo" name="photo"
-                    accept="image/png, image/jpeg">
+                    accept="image/png, image/jpeg"  (change)="onFileSelected($event)">
   
                    </div>
                     <button type="submit" name="submit" id="button">S'INSCRIRE</button>

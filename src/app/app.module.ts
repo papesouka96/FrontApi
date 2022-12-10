@@ -15,6 +15,7 @@ import { CommonModule } from '@angular/common';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { LoginComponent } from './login/login.component';
 import { InscrptionComponent } from './inscrption/inscrption.component';
+import { PageArchiveComponent } from './page-archive/page-archive.component';
  
 
 @NgModule({
@@ -25,7 +26,8 @@ import { InscrptionComponent } from './inscrption/inscrption.component';
         ModificationComponent,
         SimpleusersComponent,
         LoginComponent,
-        InscrptionComponent
+        InscrptionComponent,
+        PageArchiveComponent
     ],
     providers: [],
     bootstrap: [AppComponent],

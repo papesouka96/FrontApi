@@ -25,6 +25,8 @@ export class UsersService {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         console.log(user.data?.token)
         localStorage.setItem('currentUser', JSON.stringify(user.data?.token));
+        localStorage.setItem('role', JSON.stringify(user.data?.roles));
+
         this.currentUserSubject.next(user);
         return user;
       }));
@@ -36,7 +38,7 @@ export class UsersService {
     if(!this.currentUserValue) {
       return false;
     }
-    return true;
+    return localStorage.getItem('role');
   }
 
   getUsers(){

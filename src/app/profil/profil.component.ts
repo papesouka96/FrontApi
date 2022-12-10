@@ -27,9 +27,7 @@ export class ProfilComponent implements OnInit {
       (data: any) =>{
   
           this.users = data;
-  
           this.userActif = this.users.filter((e:any)=> e.etat == true)
-          console.log(this.userActif)
         }
   ); 
   

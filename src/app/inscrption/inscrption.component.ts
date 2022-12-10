@@ -13,6 +13,7 @@ export class InscrptionComponent {
   title = 'angularvalidate';
   submitted = false;
   verifPass:any = true;
+  imgSelected:any;
 
   constructor(private userService : UsersService, private formBuilder: FormBuilder ,) {
     this.registerForm = this.formBuilder.group({
@@ -22,6 +23,7 @@ export class InscrptionComponent {
       email: ['', [Validators.required]],
       password: ['', [Validators.required]],
       roles: ['', [Validators.required]],
+      img: [''],
       
     });
   }
@@ -65,10 +67,10 @@ export class InscrptionComponent {
 onSubmit(){
 this.submitted = true
 console.log(new Date().toISOString())
- if(this.registerForm.invalid){
+//  if(this.registerForm.invalid){
 
-  return ;
-} 
+//   return ;
+// } 
 
  /* /insertion sur la base de données/ */
   const user ={
@@ -77,10 +79,10 @@ console.log(new Date().toISOString())
    email : this.registerForm.value. email,
    roles : this.registerForm.value. roles,
    password: this.registerForm.value. password,
-   matricule : Math.random().toString(26).slice(2),
-      
+   matricule : Math.random().toString(26).slice(2),  
    date_inscri: new Date().toISOString(),
-   etat: true
+   etat: true,
+   img : this.imgSelected
   }
 
   // const user ={
@@ -98,9 +100,10 @@ console.log(new Date().toISOString())
 
   this.userService.addUsers(user).subscribe(
     data=>{
+      console.log(data)
       this.ngOnInit();
       
-    alert("Inscription reussie")
+      alert("Inscription reussie")
     }
    );
 
@@ -109,4 +112,30 @@ console.log(new Date().toISOString())
 
 }
 
+
+onFileSelected(event: any) {
+
+  if(!event.target.files[0] || event.target.files[0].length == 0) {
+    // this.msg = 'You must select an image';
+    return;
+  }
+  
+  var mimeType = event.target.files[0].type;
+  
+  if (mimeType.match(/image\/*/) == null) {
+    // this.msg = "Only images are supported";
+    return;
+  }
+  
+  var reader = new FileReader();
+  reader.readAsDataURL(event.target.files[0]);
+  
+  reader.onload = (_event) => {
+    // this.msg = "";
+    this.imgSelected = reader.result; 
+    console.log(this.imgSelected);
+  }
+
 }
+}
+
