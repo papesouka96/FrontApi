@@ -23,7 +23,7 @@ export class LoginComponent {
     
       email:['',[Validators.required,Validators.email]],
       
-      password:['',[Validators.required,Validators.minLength(4)]],
+      password:['',[Validators.required,Validators.minLength(8)]],
       
       })
   }
@@ -35,26 +35,27 @@ this.submitted = true
 
  if(this.registerForm.invalid){
 
-  return ;
+  /* return ; */
 } 
 
  /* /insertion sur la base de données/ */
- /*  const user ={
+  const user ={
  
    email : this.registerForm.value. email,
    password: this.registerForm.value. password,
   
   }
- */
+
   /* console.log(user)
 
-  this.userService.addUsers(user).subscribe(
+  */
+  this.userService.getConnexion(user).subscribe(
     data=>{
+      console.log(data)
       this.ngOnInit();
     
     }
    );
- */
 
 
 

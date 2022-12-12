@@ -10,7 +10,7 @@ import { BehaviorSubject, map } from 'rxjs';
 })
 export class UsersService {
   
-
+/* /BehaviorSubject nous permet d'observe la liste sur user/ */
   private currentUserSubject: BehaviorSubject<User>;
 
 constructor(private httpClient:HttpClient) {
@@ -52,12 +52,6 @@ return true;
   };
 
 
-  deleteId(id:any,user: User){
-   
-    return this.httpClient.delete<User>(`${env.apiUrl}/delete/${id}`);
-  };
-
-
   modifUsers(id:any,user: User){
    
     return this.httpClient.patch<User>(`${env.apiUrl}/update/${id}`,user);
@@ -67,3 +61,5 @@ return true;
     return this.httpClient.post<User>(`${env.apiUrl}/post`,user);
   }
 }
+
+
