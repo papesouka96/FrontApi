@@ -14,6 +14,7 @@ export class InscrptionComponent {
   submitted = false;
   verifPass:any = true;
   imgSelected:any;
+ 
 
   constructor(private userService : UsersService, private formBuilder: FormBuilder ,) {
     this.registerForm = this.formBuilder.group({
@@ -101,16 +102,19 @@ console.log(new Date().toISOString())
   this.userService.addUsers(user).subscribe(
     data=>{
       console.log(data)
-      this.ngOnInit();
-      
-      alert("Inscription reussie")
+    /*   this.ngOnInit(); */
+
     }
+
+
    );
 
 
 
 
 }
+
+
 
 
 onFileSelected(event: any) {
@@ -168,5 +172,14 @@ selectFile(event: any) { //Angular 11, for stricter type
   //   this.url = reader.result; 
   // }
 }
+displayStyle = "none";
+  
+openPopup() {
+  this.displayStyle = "block";
+}
+closePopup() {
+  this.displayStyle = "none";
+}
+
 }
 
