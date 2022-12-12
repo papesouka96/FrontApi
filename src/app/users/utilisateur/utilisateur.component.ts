@@ -34,8 +34,8 @@ ngOnInit(): void {
 
         this.users = data;
 
-        this.userActif = this.users.filter((e:any)=> e.etat == true)
-        console.log(this.userActif)
+        this.userActif = this.users.filter((e:any)=> e.etat == false)
+        console.log(this.users.filter((e:any)=> e.etat))
       }
 ); 
 

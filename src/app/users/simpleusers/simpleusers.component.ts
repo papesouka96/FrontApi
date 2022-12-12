@@ -16,14 +16,15 @@ p: number= 1;
 itemsperpage: number= 5;
 totalUser:any; 
 searchText:any;
-user = [];
+user :any;
   constructor(private userService : UsersService){}
 
   ngOnInit(): void {
   this.userService.getUsers().subscribe( /* déclarer le service getusers */
     data =>{
-      this.users = data;
-      console.log(this.users)
+    
+      this.users = data
+   
      /*  console.log(data) */
     }
   );
