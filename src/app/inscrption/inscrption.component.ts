@@ -102,7 +102,9 @@ console.log(new Date().toISOString())
   this.userService.addUsers(user).subscribe(
     data=>{
       console.log(data)
-    /*   this.ngOnInit(); */
+      this.closePopup()
+      
+     this.ngOnInit(); 
 
     }
 
