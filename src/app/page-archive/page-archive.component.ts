@@ -3,12 +3,13 @@ import { FormBuilder, FormGroup, NgModel, Validators } from '@angular/forms';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
-  selector: 'app-utilisateur',
-  templateUrl: './utilisateur.component.html',
-  styleUrls: ['./utilisateur.component.css']
+  selector: 'app-page-archive',
+  templateUrl: './page-archive.component.html',
+  styleUrls: ['./page-archive.component.css']
 })
 
-export class UtilisateurComponent implements OnInit { 
+export class PageArchiveComponent implements OnInit {
+
 users: any;
 userEditForm : FormGroup;
 showForm = false; 
@@ -16,7 +17,7 @@ p: number= 1;
 itemsperpage: number= 5;
 totalUser:any; 
 searchText:any;
-user = []; userActif:any = [];
+user = []; userArchive =[];
 
   constructor(private userService : UsersService, private formBuilder : FormBuilder){
     this.userEditForm = this.formBuilder.group({
@@ -33,11 +34,10 @@ ngOnInit(): void {
       data =>{
 
         this.users = data;
-
-        this.userActif = this.users.filter((e:any)=> e.etat == true)
-        console.log(this.userActif)
-      }
-); 
+        this.userArchive = this.users.filter((e:any)=> e.etat == false)
+               console.log(this.userArchive)
+              }
+);
 
 }
 
@@ -49,40 +49,24 @@ retrieveData(){
 }
 
 
-changeRole=(id:any,roles:any)=> {
- roles == "admin" ? roles ="utilisateur": roles = "admin"
-
- const user ={
-  roles : roles
-
- }
-
- this.userService.changeRole(id,user).subscribe(
-
-  data=>{
-    this.ngOnInit();
-  }
- );
-}
-
-
-deleteId=(id:any,etat:any)=> {
+ddeleteId=(id:any,etat:any)=> {
   
-etat == "false" ? etat = true : etat = false
-
- const user ={
- etat : etat
-
- }
-
- this.userService.modifUsers(id,user).subscribe(
-
-  data=>{
-    this.ngOnInit();
+  etat == true ? etat = false : etat = true
+  
+   const user ={
+   etat : etat
+  
+   }
+  
+   this.userService.modifUsers(id,user).subscribe(
+  
+    data=>{
+      this.ngOnInit();
+    }
+   );
   }
- );
-}
 
+/* 
 getUserData(id:any,email:any,prenom:any,nom:any){
   this.showForm = true;
   this.userEditForm = this.formBuilder.group({
@@ -108,11 +92,11 @@ console.log(user)
  this.userService.changeRole(id,user).subscribe(
 
   data=>{
-    this.ngOnInit();
+    //this.ngOnInit();
     this.showForm = false
   }
  );
-}
+} */
 
 }
 

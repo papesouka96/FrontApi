@@ -35,13 +35,11 @@ import { InscrptionComponent } from './inscrption/inscrption.component';
         HttpClientModule,
         FormsModule,
         FormsModule,
-        ReactiveFormsModule,
-       
+        ReactiveFormsModule,  
         NgxPaginationModule,
         CommonModule,
         Ng2SearchPipeModule
 
     ]
-
 })
 export class AppModule {}
