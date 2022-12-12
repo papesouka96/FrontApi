@@ -56,14 +56,9 @@ changeRole=(id:any,roles:any)=> {
   roles : roles
 
  }
-<<<<<<< HEAD
 
  if (confirm("Changer de role")) {
   this.userService.changeRole(id,user).subscribe(
-=======
-/* /observer les changement/ */
- this.userService.changeRole(id,user).subscribe(
->>>>>>> 59c96f1b9645db8c5e146d6635c4af796707867d
 
     data=>{
       this.ngOnInit();
