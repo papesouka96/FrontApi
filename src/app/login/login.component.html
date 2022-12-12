@@ -1,6 +1,6 @@
-<div class="container p-3 col-md-5 mb-8  h-90 bg-light" id="container">
+<div class="container p-3 col-md-5   bg-light" id="container">
 
-    <h1>FORMULAIRE DE CONNEXION</h1>
+    <!-- <h1>FORMULAIRE DE CONNEXION</h1> -->
 
     <form id="form" class="row g-3 d-flex justify-content-center no-wrap m-2 bg-light" (submit)="onSubmit()"
         [formGroup]="registerForm">
@@ -41,7 +41,7 @@
 
             </div>
         </div>
-        <input type="submit" value="CONNEXION" name="button" id="button">
+        <input type="submit" class="col-4 btn btn-primary" value="Connexion" name="button" >
         <a  routerLink="/inscription">S'INSCRIRE</a>
     </form>
 </div>

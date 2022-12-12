@@ -17,25 +17,40 @@ export class ProfilComponent implements OnInit {
   totalUser:any; 
   user = []; userActif:any = [];
   userServices: any;
-  img:any;
+  // img:any;
   image:any;
 
   src:any;
 
+  @ViewChild('imgRef')
+  img:ElementRef | any;
   
   constructor(private userService : UsersService, private domSanitizer: DomSanitizer,){
     
   }
   ngOnInit(): void {
-  
+
+    this.src = localStorage.getItem('img');
+
     this.userService.getUsers().subscribe( 
       (data: any) =>{
   
           this.users = data;
           this.userActif = this.users.filter((e:any)=> e.etat == true)
         }
-        ); 
+    ); 
 
+    const reader = new FileReader();
+    
+      // reader.readAsDataURL(file);
+    
+      reader.onload = () => {
+        this.img = reader.result as string;
+        // this.uploadForm.patchValue({
+          // imgSrc: reader.result
+        // });
+      };
+      console.log(this.img)
         this.img = localStorage.getItem('img');
         // this.image =btoa(this.img);
         // console.log(this.image)
@@ -51,7 +66,7 @@ export class ProfilComponent implements OnInit {
         // let objectURL = 'data:image/jpeg;base64,' + this.img;
 
          this.image = this.domSanitizer.bypassSecurityTrustUrl(this.img );
-         console.log(this.image)
+        //  console.log(this.image)
   }
 
    convertBase64ToBlob(base64Image: string) {
@@ -75,6 +90,7 @@ export class ProfilComponent implements OnInit {
     // Return BLOB image after conversion
     return new Blob([uInt8Array], { type: imageType });
   }
+
 
   
   
