@@ -50,8 +50,9 @@ retrieveData(){
 
 
 ddeleteId=(id:any,etat:any)=> {
-  
-  etat == true ? etat = false : etat = true
+
+  if (confirm('Voule-vouz désarchiver')) {
+    etat == true ? etat = false : etat = true
   
    const user ={
    etat : etat
@@ -65,6 +66,8 @@ ddeleteId=(id:any,etat:any)=> {
     }
    );
   }
+  
+}
 
 /* 
 getUserData(id:any,email:any,prenom:any,nom:any){
