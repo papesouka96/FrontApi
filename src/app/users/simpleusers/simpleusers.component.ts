@@ -16,15 +16,16 @@ p: number= 1;
 itemsperpage: number= 5;
 totalUser:any; 
 searchText:any;
-user = [];
+user:any;userActif:any;
   constructor(private userService : UsersService){}
 
   ngOnInit(): void {
   this.userService.getUsers().subscribe( /* déclarer le service getusers */
     data =>{
       this.users = data;
-      console.log(this.users)
-     /*  console.log(data) */
+
+      this.userActif = this.users.filter((e:any)=> e.etat == true)
+     
     }
   );
 
