@@ -141,6 +141,10 @@
      
         <form id="form" class="row g-3 d-flex justify-content-center no-wrap m-2 bg-light" (submit)="onSubmit()"[formGroup]="registerForm" >
           <div *ngIf="!verifPass" class="d-flex justify-content-center text text-danger" id="">
+            <span>les deux password ne correspondent pas!</span>
+          </div>
+          <div *ngIf="errorMsg!" class="d-flex justify-content-center text text-danger" id="">
+            <span>email deja existe!</span>
           </div>
             <div class="col-md-6">
             <div class="input-control">

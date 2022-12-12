@@ -14,6 +14,7 @@ export class InscrptionComponent {
   submitted = false;
   verifPass:any = true;
   imgSelected:any;
+  errorMsg:any;
 
   constructor(private userService : UsersService, private formBuilder: FormBuilder ,) {
     this.registerForm = this.formBuilder.group({
@@ -104,6 +105,12 @@ console.log(new Date().toISOString())
       this.ngOnInit();
       
       alert("Inscription reussie")
+    },
+    error=>{
+      this.errorMsg ='error email existant'
+      this.ngOnInit();
+      
+      
     }
    );
 
