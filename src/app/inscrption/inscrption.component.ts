@@ -74,11 +74,11 @@ console.log(new Date().toISOString())
 
  /* /insertion sur la base de données/ */
   const user ={
-   prenom : this.registerForm.value. prenom,
-   nom : this.registerForm.value. nom,
-   email : this.registerForm.value. email,
-   roles : this.registerForm.value. roles,
-   password: this.registerForm.value. password,
+   prenom : this.registerForm.value.prenom,
+   nom : this.registerForm.value.nom,
+   email : this.registerForm.value.email,
+   roles : this.registerForm.value.roles,
+   password: this.registerForm.value.password,
    matricule : Math.random().toString(26).slice(2),  
    date_inscri: new Date().toISOString(),
    etat: true,

@@ -22,3 +22,39 @@ form {
     width: 50%;
     background-color: blue;
 }
+
+h1 {
+    color: #0f2027;
+    text-align: center;
+    font-size: 30px;
+    /*  margin-left: 12px; */
+}
+
+.input-control .error {
+    color: #ff3860;
+    font-size: 20px;
+    height: 13px;
+}
+
+label {
+    font-size: 25px;
+}
+
+a {
+    text-decoration: none;
+    color: orange;
+    font-size: 20px;
+    /* margin-left: 1363px; */
+}
+
+a:hover {
+    color: blue;
+}
+
+p {
+    text-align: center
+}
+
+#container {
+    width: 70%;
+}
