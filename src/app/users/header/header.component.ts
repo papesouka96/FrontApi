@@ -17,13 +17,13 @@ ngOnInit(): void {
   this.roles = localStorage.getItem('role') == "admin"
  if (this.userService.getLoggedIn() !== "admin") {
     this.roles = true
-    console.log('ok')
+    // console.log('ok')
  } else {
   this.roles = false
-  console.log('no')
+  // console.log('no')
  }
   // console.log(localStorage.getItem('role') == "admin")
 
-  console.log(this.userService.getLoggedIn());
+  // console.log(this.userService.getLoggedIn());
 }
 }

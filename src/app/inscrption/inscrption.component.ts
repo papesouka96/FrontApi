@@ -27,7 +27,7 @@ export class InscrptionComponent {
       
     });
   }
-  ngOnInit() {
+  ngOnInit():void {
     this.registerForm = this.formBuilder.group({
      prenom:['',[Validators.required,UsernameValidator.cannotContainSpace]],
       nom:['',Validators.required,UsernameValidator.cannotContainSpace],
@@ -115,27 +115,58 @@ console.log(new Date().toISOString())
 
 onFileSelected(event: any) {
 
-  if(!event.target.files[0] || event.target.files[0].length == 0) {
-    // this.msg = 'You must select an image';
-    return;
-  }
-  
-  var mimeType = event.target.files[0].type;
-  
-  if (mimeType.match(/image\/*/) == null) {
-    // this.msg = "Only images are supported";
-    return;
-  }
-  
-  var reader = new FileReader();
-  reader.readAsDataURL(event.target.files[0]);
-  
-  reader.onload = (_event) => {
-    // this.msg = "";
-    this.imgSelected = reader.result; 
-    console.log(this.imgSelected);
-  }
 
+  let reader = new FileReader();
+    if(event.target.files && event.target.files.length > 0) {
+      let file = event.target.files[0];
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.imgSelected = reader.result; 
+        console.log(this.imgSelected);
+      };
+    }
+//   if(!event.target.files[0] || event.target.files[0].length == 0) {
+//     // this.msg = 'You must select an image';
+//     return;
+//   }
+  
+//   var mimeType = event.target.files[0].type;
+  
+//   if (mimeType.match(/image\/*/) == null) {
+//     // this.msg = "Only images are supported";
+//     return;
+//   }
+  
+//   var reader = new FileReader();
+//   reader.readAsDataURL(event.target.files[0]);
+  
+//   reader.onload = (_event) => {
+//     // this.msg = "";
+//     this.imgSelected = reader.result; 
+//   }
+
+}
+
+selectFile(event: any) { //Angular 11, for stricter type
+  // if(!event.target.files[0] || event.target.files[0].length == 0) {
+  //   this.msg = 'You must select an image';
+  //   return;
+  // }
+  
+  // var mimeType = event.target.files[0].type;
+  
+  // if (mimeType.match(/image\/*/) == null) {
+  //   this.msg = "Only images are supported";
+  //   return;
+  // }
+  
+  // var reader = new FileReader();
+  // reader.readAsDataURL(event.target.files[0]);
+  
+  // reader.onload = (_event) => {
+  //   this.msg = "";
+  //   this.url = reader.result; 
+  // }
 }
 }
 

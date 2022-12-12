@@ -37,9 +37,11 @@
           <td>{{user.prenom}}</td>             
           <td>{{user.email}}</td>           
           <td>{{user.roles}}</td>
-      <td> 
-        <span class="btn btn-outline-danger" title="supprimer"><i class="bi bi-trash-fill" id="i1" (click)="deleteId(user._id,user.etat)" ></i></span>
+      <td class="d-flex justify-content-arround"> 
+        <span class="btn btn-outline-danger" title="supprimer"><i class="bi bi-archive" id="i1" (click)="deleteId(user._id,user.etat)" ></i></span>
+        &nbsp;
         <span  class="btn btn-outline-primary" title="modifier"><i class="bi bi-pen-fill" id="i2" (click)="getUserData(user._id,user.email,user.prenom,user.nom)"></i></span>
+        &nbsp;
         <span  class="btn btn-outline-primary" title="changer"><i class="bi bi-arrow-clockwise" (click)="changeRole(user._id,user.roles)"></i></span></td> 
                       
         </tr>   
@@ -56,7 +58,7 @@
    
 
 
-  <form *ngIf="showForm" [formGroup]="userEditForm" (ngSubmit)="modifUsers()">
+  <form *ngIf="showForm" [formGroup]="userEditForm" (ngSubmit)="modifUsers()" class="col-6" style="margin: 0 auto;">
     <input type="text" formControlName="id"  hidden>
   <div class="mb-3">
     <label for="nom" class="form-label">NOM</label>
@@ -72,7 +74,10 @@
     <input type="email" class="form-control" formControlName="email">
   
   </div>
-  <button type="submit" class="btn btn-primary">ENREGISTRER</button>
+  <div class="d-flex justify-content-space">
+    <button type="submit" class="btn btn-primary">Modifier</button>
+    <button type="submit" class="btn btn-danger" (click)="this.ngOnInit()">Annuler</button>
+  </div>
 </form> 
    
 

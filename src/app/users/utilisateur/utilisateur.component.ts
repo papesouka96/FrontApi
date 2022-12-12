@@ -57,12 +57,14 @@ changeRole=(id:any,roles:any)=> {
 
  }
 
- this.userService.changeRole(id,user).subscribe(
+ if (confirm("Changer de role")) {
+  this.userService.changeRole(id,user).subscribe(
 
-  data=>{
-    this.ngOnInit();
-  }
- );
+    data=>{
+      this.ngOnInit();
+    }
+   );
+ }
 }
 
 
@@ -75,23 +77,27 @@ etat == "false" ? etat = true : etat = false
 
  }
 
- this.userService.modifUsers(id,user).subscribe(
+ if (confirm("Archiver cet utilisateur")) {
+    this.userService.modifUsers(id,user).subscribe(
 
-  data=>{
-    this.ngOnInit();
-  }
- );
+      data=>{
+        this.ngOnInit();
+      }
+   );
+ }
 }
 
 getUserData(id:any,email:any,prenom:any,nom:any){
-  this.showForm = true;
+  if (confirm("Voulez-vous modifier")) {
+    this.showForm = true;
   this.userEditForm = this.formBuilder.group({
       id:[id],
       prenom: [prenom, [Validators.required]],
       nom: [nom, [Validators.required]],
       email: [email, [Validators.required]],
     });
-  console.log(id)
+  }
+  
 }
 
 
@@ -103,13 +109,16 @@ const id =  this.userEditForm.value.id;
   prenom: this.userEditForm.value.prenom,
   email: this.userEditForm.value.email
  }
-console.log(user)
-
+ 
  this.userService.changeRole(id,user).subscribe(
-
-  data=>{
+   
+   data=>{
+    console.log(data)
     this.ngOnInit();
     this.showForm = false
+  },
+  error =>{
+    console.log(error )
   }
  );
 }

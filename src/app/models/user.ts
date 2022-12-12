@@ -11,5 +11,6 @@ date_archive?:Date;
 data?:{
     token: String;
     roles: String;
+    img: String;
 };
 }
