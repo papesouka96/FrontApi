@@ -9,37 +9,38 @@ import { BehaviorSubject, map } from 'rxjs';
   providedIn: 'root'
 })
 export class UsersService {
+  
+/* /BehaviorSubject nous permet d'observe la liste sur user/ */
   private currentUserSubject: BehaviorSubject<User>;
 
-  constructor(private httpClient:HttpClient) {
-    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse((localStorage.getItem('currentUser')!)));
-  }
+constructor(private httpClient:HttpClient) {
+this.currentUserSubject = new BehaviorSubject<User>(JSON.parse((localStorage.getItem('currentUser')!)));
+}
 
-  public get currentUserValue(): User {
-    return this.currentUserSubject.value;
-  }
+public get currentUserValue(): User {
+return this.currentUserSubject.value;
+}
 
-  getConnexion(user:User){
-    return this.httpClient.post<User>(`${env.apiUrl}/login`,user).
-      pipe(map(user => {
-        // store user details and jwt token in local storage to keep user logged in between page refreshes
-        console.log(user.data)
-        localStorage.setItem('currentUser', JSON.stringify(user.data?.token));
-        localStorage.setItem('role', JSON.stringify(user.data?.roles));
-        localStorage.setItem('img', JSON.stringify(user.data?.img));
-        this.currentUserSubject.next(user);
-        return user;
-      }));
+getConnexion(user:User){
+return this.httpClient.post<User>(`${env.apiUrl}/login`,user).
+pipe(map(user => {
+// store user details and jwt token in local storage to keep user logged in between page refreshes
+console.log(user.data?.token)
+localStorage.setItem('currentUser', JSON.stringify(user.data?.token));
+this.currentUserSubject.next(user);
+return user;
+}));
 
-  }
+}
 
-  getLoggedIn(){
+getLoggedIn(){
 
-    if(!this.currentUserValue) {
-      return false;
-    }
-    return localStorage.getItem('role');
-  }
+if(!this.currentUserValue) {
+  return false;
+}
+return true;
+}
+
 
   getUsers(){
     return this.httpClient.get(`${env.apiUrl}/getAll`)

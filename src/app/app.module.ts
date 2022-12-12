@@ -15,8 +15,11 @@ import { CommonModule, NgClass, NgStyle } from '@angular/common';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { LoginComponent } from './login/login.component';
 import { InscrptionComponent } from './inscrption/inscrption.component';
+<<<<<<< HEAD
 import { PageArchiveComponent } from './page-archive/page-archive.component';
 import { HelperService } from './helper/helper.service';
+=======
+>>>>>>> 59c96f1b9645db8c5e146d6635c4af796707867d
  
 
 @NgModule({
@@ -27,8 +30,13 @@ import { HelperService } from './helper/helper.service';
         ModificationComponent,
         SimpleusersComponent,
         LoginComponent,
+<<<<<<< HEAD
         InscrptionComponent,
         PageArchiveComponent
+=======
+        InscrptionComponent
+        
+>>>>>>> 59c96f1b9645db8c5e146d6635c4af796707867d
     ],
     bootstrap: [AppComponent],
     imports: [

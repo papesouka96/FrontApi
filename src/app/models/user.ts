@@ -8,9 +8,8 @@ etat?: boolean;
 matricule?: String;
 date_modif?:Date;
 date_archive?:Date;
-data?:{
-    token: String;
-    roles: String;
-    img: String;
-};
+data?: {
+    token: String
 }
+}
+

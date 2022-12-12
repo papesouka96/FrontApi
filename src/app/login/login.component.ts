@@ -24,7 +24,7 @@ export class LoginComponent {
     
       email:['',[Validators.required,Validators.email]],
       
-      password:['',[Validators.required,Validators.minLength(4)]],
+      password:['',[Validators.required,Validators.minLength(8)]],
       
       })
   }
@@ -36,7 +36,7 @@ this.submitted = true
 
  if(this.registerForm.invalid){
 
-  return ;
+  /* return ; */
 } 
 
  /* /insertion sur la base de données/ */
@@ -47,19 +47,16 @@ this.submitted = true
   
   }
 
-  /* console.log(user)*/
+  /* console.log(user)
 
+  */
   this.userService.getConnexion(user).subscribe(
     data=>{
-      console.log(data.data?.roles)
-      if (data.data?.roles == "Administrateur" || data.data?.roles == "admin") {
-          this.route.navigateByUrl('admin')
-      } else {
-        this.route.navigateByUrl('user')
-      }
+      console.log(data)
+      this.ngOnInit();
+    
     }
    );
- 
 
 
 

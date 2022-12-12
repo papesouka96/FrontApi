@@ -36,6 +36,8 @@ export class InscrptionComponent {
       password:['',[Validators.required,Validators.minLength(8)]],
       passwordc:['',Validators.required]
       })
+
+      
   }
 
   checkPassword =()=>{
@@ -65,25 +67,30 @@ export class InscrptionComponent {
  }
   
 onSubmit(){
-this.submitted = true
+this.submitted = true; 
+let matriculeGenerate;
 console.log(new Date().toISOString())
 //  if(this.registerForm.invalid){
 
 //   return ;
 // } 
 
- /* /insertion sur la base de données/ */
+ /* /gener matricule/ */
+ 
+  this.registerForm.value.roles =="admin" ? matriculeGenerate= "MAD"+(Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1))
+  :matriculeGenerate= "MUT"+(Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1));
   const user ={
    prenom : this.registerForm.value.prenom,
    nom : this.registerForm.value.nom,
    email : this.registerForm.value.email,
    roles : this.registerForm.value.roles,
    password: this.registerForm.value.password,
-   matricule : Math.random().toString(26).slice(2),  
+   matricule : matriculeGenerate,
    date_inscri: new Date().toISOString(),
    etat: true,
    img : this.imgSelected
   }
+  
 
   // const user ={
   //   prenom: "katy",
@@ -95,9 +102,9 @@ console.log(new Date().toISOString())
   // matricule: "1234",
   //  etat: false
   // }
-
   console.log(user)
 
+  
   this.userService.addUsers(user).subscribe(
     data=>{
       console.log(data)
