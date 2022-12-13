@@ -71,7 +71,7 @@ export class ProfilComponent implements OnInit {
    }
   console.log(user)
   
-   this.userService.changeRole(id,user).subscribe(
+   this.userService.changeRole(id,this.user).subscribe(
   
     data=>{
       this.ngOnInit();
