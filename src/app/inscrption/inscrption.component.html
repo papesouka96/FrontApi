@@ -167,7 +167,7 @@
             <div class="input-control">
               <label for="username">Nom</label>
               <input id="nom" name="nom"  class=" p-3 rounded-0" type="text"
-              [ngClass]="{'is-invalid':submitted && registerForm.controls['prenom'].errors}" placeholder="nom"
+              [ngClass]="{'is-invalid':submitted && registerForm.controls['nom'].errors}" placeholder="nom"
               formControlName="nom" type="text" class="form-control">
           <div *ngIf="submitted && registerForm.controls['nom'].errors" class="text-danger" name="nom">
               <div *ngIf="submitted && registerForm.controls['nom'].errors required">
