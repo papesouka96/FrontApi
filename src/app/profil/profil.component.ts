@@ -1,6 +1,5 @@
-import { Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, NgModel, Validators } from '@angular/forms';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -8,91 +7,108 @@ import { UsersService } from 'src/app/services/users.service';
   templateUrl: './profil.component.html',
   styleUrls: ['./profil.component.css']
 })
-export class ProfilComponent implements OnInit {
- 
+
+export class ProfilComponent implements OnInit { 
   users: any;
+  userEditForm : FormGroup;
   showForm = false; 
   p: number= 1;
   itemsperpage: number= 5;
   totalUser:any; 
-  user = []; userActif:any = [];
-  userServices: any;
-  // img:any;
-  image:any;
-
-  src:any;
-
-  @ViewChild('imgRef')
-  img:ElementRef | any;
+  searchText:any;
+  user:any; userActif:any;
+  verifPass:any = true;
+  registerForm!:FormGroup;
+  submitted = false;
   
-  constructor(private userService : UsersService, private domSanitizer: DomSanitizer,){
-    
-  }
-  ngOnInit(): void {
-
-    this.src = localStorage.getItem('img');
-
-    this.userService.getUsers().subscribe( 
-      (data: any) =>{
-  
-          this.users = data;
-          this.userActif = this.users.filter((e:any)=> e.etat == true)
-        }
-    ); 
-
-    const reader = new FileReader();
-    
-      // reader.readAsDataURL(file);
-    
-      reader.onload = () => {
-        this.img = reader.result as string;
-        // this.uploadForm.patchValue({
-          // imgSrc: reader.result
-        // });
-      };
-      console.log(this.img)
-        this.img = localStorage.getItem('img');
-        // this.image =btoa(this.img);
-        // console.log(this.image)
-       this.image= 'data:image/jpeg;base64,' +this.img
-        
-          // this.myForm.patchValue({
-  
-          //   fileSource: reader.result
-  
-          // });
-  
-    
-        // let objectURL = 'data:image/jpeg;base64,' + this.img;
-
-         this.image = this.domSanitizer.bypassSecurityTrustUrl(this.img );
-        //  console.log(this.image)
-  }
-
-   convertBase64ToBlob(base64Image: string) {
-    // Split into two parts
-    const parts = base64Image.split(';base64,');
-  
-    // Hold the content type
-    const imageType = parts[0].split(':')[1];
-  
-    // Decode Base64 string
-    const decodedData = window.atob(parts[1]);
-  
-    // Create UNIT8ARRAY of size same as row data length
-    const uInt8Array = new Uint8Array(decodedData.length);
-  
-    // Insert all character code into uInt8Array
-    for (let i = 0; i < decodedData.length; ++i) {
-      uInt8Array[i] = decodedData.charCodeAt(i);
+    constructor(private userService : UsersService, private formBuilder : FormBuilder){
+      this.userEditForm = this.formBuilder.group({
+        id:[''],
+        photo: ['', [Validators.required]],
+        password: ['', [Validators.required]],
+        password2: ['', [Validators.required]],
+      });
     }
   
-    // Return BLOB image after conversion
-    return new Blob([uInt8Array], { type: imageType });
+  ngOnInit(): void {
+  
+    this.userService.getUsers().subscribe( 
+        data =>{
+  
+          this.users = data;
+  
+          this.userActif = this.users.filter((e:any)=> e.etat == true && e.email == localStorage.getItem('userEmail'))
+          console.log(this.userActif)
+        }
+  ); 
+  
+  }
+ 
+
+  getUserData(){
+    this.showForm = true;
+    let id;
+    for (const iterator of this.userActif) {
+     id = iterator._id
+    }
+    console.log(id)
+    this.userEditForm = this.formBuilder.group({
+        id:[id],
+        password: ["", [Validators.required]],
+        password2: ["", [Validators.required]],
+      });
+    console.log(id)
+  }
+  
+  
+  modifUsers (){
+  
+  const id =  this.userEditForm.value.id;
+   const user ={
+    photo: this.userEditForm.value.photo,
+    password: this.userEditForm.value.password,
+    password2: this.userEditForm.value.password2
+   }
+  console.log(user)
+  
+   this.userService.changeRole(id,user).subscribe(
+  
+    data=>{
+      this.ngOnInit();
+      this.showForm = false
+    }
+   );
   }
 
+  checkPassword=()=>{
+
+    let pass1 = (<HTMLInputElement>document.getElementById("pass1")).value;
+    let pass2 = (<HTMLInputElement>document.getElementById("pass2")).value;
+
+    console.log(pass1 != pass2)
+
+    if( pass1 != pass2)
+    {
+      this.verifPass = false;
+      this.registerForm = this.formBuilder.group(
+        {
+
+        password:[''],
+        password2:[''],
+
+      })
+
+      setTimeout(()=>{ this.verifPass = true}, 3001);
+    }
+ }
+
+
 
   
+  }
   
-}
+  
+
+
+
 
