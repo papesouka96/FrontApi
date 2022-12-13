@@ -3,6 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsersService } from 'src/app/services/users.service';
 /* import { Person } from './Person'; */
 import { UsernameValidator } from '../username.validator';
+import Swal from 'sweetalert2'; 
+
+
+
+
 @Component({
   selector: 'app-inscrption',
   templateUrl: './inscrption.component.html',
@@ -14,6 +19,7 @@ export class InscrptionComponent {
   submitted = false;
   verifPass:any = true;
   imgSelected:any;
+  errorMsg:any;
 
   constructor(private userService : UsersService, private formBuilder: FormBuilder ,) {
     this.registerForm = this.formBuilder.group({
@@ -63,7 +69,14 @@ export class InscrptionComponent {
       
     }
  }
-  
+
+ 
+   simpleAlert(){  
+    Swal.fire('INSCRIPTION RÉUSSIE AVEC SUCCÉE'); 
+    Swal.update({
+      icon: 'success'
+    }) 
+  }  
 onSubmit(){
 this.submitted = true
 console.log(new Date().toISOString())
@@ -85,33 +98,30 @@ console.log(new Date().toISOString())
    img : this.imgSelected
   }
 
-  // const user ={
-  //   prenom: "katy",
-  //   nom:"soumbane",
-  //   email: "awasoumbane281@gmail.com",
-  //   password: "1238",
-  //   roles: "admin",
-  // date_inscri: "2022-05-12",
-  // matricule: "1234",
-  //  etat: false
-  // }
+  
 
   console.log(user)
 
   this.userService.addUsers(user).subscribe(
     data=>{
       console.log(data)
-      this.ngOnInit();
-      
-      alert("Inscription reussie")
+    //  this.popup = false;
+    //  this.popup = true;
+      this.simpleAlert()
+     this.ngOnInit(); 
+  
+    }, 
+   /*  /controle email/ */
+    error=>{
+      if(error == 'Conflict')
+      this.errorMsg ='error email existant'
+      setTimeout(()=>{ this.errorMsg = false}, 3001);       
     }
+
+
    );
 
-
-
-
 }
-
 
 onFileSelected(event: any) {
 
@@ -125,48 +135,13 @@ onFileSelected(event: any) {
         console.log(this.imgSelected);
       };
     }
-//   if(!event.target.files[0] || event.target.files[0].length == 0) {
-//     // this.msg = 'You must select an image';
-//     return;
-//   }
-  
-//   var mimeType = event.target.files[0].type;
-  
-//   if (mimeType.match(/image\/*/) == null) {
-//     // this.msg = "Only images are supported";
-//     return;
-//   }
-  
-//   var reader = new FileReader();
-//   reader.readAsDataURL(event.target.files[0]);
-  
-//   reader.onload = (_event) => {
-//     // this.msg = "";
-//     this.imgSelected = reader.result; 
-//   }
 
 }
 
-selectFile(event: any) { //Angular 11, for stricter type
-  // if(!event.target.files[0] || event.target.files[0].length == 0) {
-  //   this.msg = 'You must select an image';
-  //   return;
-  // }
-  
-  // var mimeType = event.target.files[0].type;
-  
-  // if (mimeType.match(/image\/*/) == null) {
-  //   this.msg = "Only images are supported";
-  //   return;
-  // }
-  
-  // var reader = new FileReader();
-  // reader.readAsDataURL(event.target.files[0]);
-  
-  // reader.onload = (_event) => {
-  //   this.msg = "";
-  //   this.url = reader.result; 
-  // }
+selectFile(event: any) { 
+
 }
+
+
 }
 
