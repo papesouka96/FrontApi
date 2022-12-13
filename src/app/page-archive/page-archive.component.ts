@@ -52,7 +52,7 @@ simpleAlert(){
   Swal.fire('INSCRIPTION RÉUSSIE AVEC SUCCÉE'); 
   
   Swal.fire({  
-    title: 'Voulez-vous vraiment effectuer cette action?',  
+    title: 'Voulez-vous vraiment desarchiver cette utilisateur?',  
     text: 'Si oui met ok',  
     icon: 'warning',  
     showCancelButton: true,  
