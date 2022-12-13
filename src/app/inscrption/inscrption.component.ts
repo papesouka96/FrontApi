@@ -19,9 +19,7 @@ export class InscrptionComponent {
   submitted = false;
   verifPass:any = true;
   imgSelected:any;
-showForm: any;
-popup = false
- 
+  errorMsg:any;
 
   constructor(private userService : UsersService, private formBuilder: FormBuilder ,) {
     this.registerForm = this.formBuilder.group({
@@ -111,19 +109,19 @@ console.log(new Date().toISOString())
     //  this.popup = true;
       this.simpleAlert()
      this.ngOnInit(); 
-
+  
+    }, 
+   /*  /controle email/ */
+    error=>{
+      if(error == 'Conflict')
+      this.errorMsg ='error email existant'
+      setTimeout(()=>{ this.errorMsg = false}, 3001);       
     }
 
 
    );
 
-
-
-
 }
-
-
-
 
 onFileSelected(event: any) {
 
@@ -137,48 +135,11 @@ onFileSelected(event: any) {
         console.log(this.imgSelected);
       };
     }
-//   if(!event.target.files[0] || event.target.files[0].length == 0) {
-//     // this.msg = 'You must select an image';
-//     return;
-//   }
-  
-//   var mimeType = event.target.files[0].type;
-  
-//   if (mimeType.match(/image\/*/) == null) {
-//     // this.msg = "Only images are supported";
-//     return;
-//   }
-  
-//   var reader = new FileReader();
-//   reader.readAsDataURL(event.target.files[0]);
-  
-//   reader.onload = (_event) => {
-//     // this.msg = "";
-//     this.imgSelected = reader.result; 
-//   }
 
 }
 
-selectFile(event: any) { //Angular 11, for stricter type
-  // if(!event.target.files[0] || event.target.files[0].length == 0) {
-  //   this.msg = 'You must select an image';
-  //   return;
-  // }
-  
-  // var mimeType = event.target.files[0].type;
-  
-  // if (mimeType.match(/image\/*/) == null) {
-  //   this.msg = "Only images are supported";
-  //   return;
-  // }
-  
-  // var reader = new FileReader();
-  // reader.readAsDataURL(event.target.files[0]);
-  
-  // reader.onload = (_event) => {
-  //   this.msg = "";
-  //   this.url = reader.result; 
-  // }
+selectFile(event: any) { 
+
 }
 
 
