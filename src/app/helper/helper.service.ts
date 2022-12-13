@@ -14,7 +14,7 @@ export class HelperService {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
       // add authorization header with jwt token if available
       let currentUser = this.authService.currentUserValue;
-       console.log(currentUser); 
+    //    console.log(currentUser); 
        
       if (currentUser) {
           request = request.clone({
@@ -26,6 +26,7 @@ export class HelperService {
           
       return next.handle(request).pipe(catchError(err => {
           const error = err.error.message || err.statusText;
+          console.log(error)
           return throwError(error);
       }))
   }

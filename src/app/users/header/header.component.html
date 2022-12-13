@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg bg-primary  fixed-top" style="max-height: 5rem;">
         <div class="container-fluid shadow">
     
-            <img src="../img/simplon.png" class="navbar-brand placeholder-glow p-2 img-thumbnail" height="50" height="50">
+            <img src="https://simplon.sn/wp-content/uploads/2022/03/logo-simplonSenegal-1-e1647016201426.png"  id="img" class="navbar-brand placeholder-glow p-2 img-thumbnail" height="50" height="50">
     
             <button class="navbar-toggler fs-1" onclick="hideShow()" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon bi bi-menu-button"></span>
@@ -51,7 +51,7 @@
                             <a class="nav-link  d-sm-flex justify-content-center shadow bg-body text-dark text-decoration-none" title="Avatar" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="max-height: 4rem;">
     
                                
-                                        <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['photo']); ?>" class="rounded-circle border m-1   " height="40" />
+                                        <img [attr.src]="img" class="rounded-circle border m-1" height="45" />
                                    
                                 <p class="d-block">
                                    <span class="d-none d-sm-inline ">prenom nom</span> <br>
@@ -65,7 +65,7 @@
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" routerLink="login"><i class="bi bi-box-arrow-left p-2 fs-5"></i>Déconnecter</a></li>
+                                <li><a class="dropdown-item" (click)="logOut()"><i class="bi bi-box-arrow-left p-2 fs-5"></i>Déconnecter</a></li>
     
     
     

@@ -59,6 +59,11 @@ export class UsersService {
   addUsers(user: User){
     return this.httpClient.post<User>(`${env.apiUrl}/post`,user);
   }
+
+  getLogOut(){
+    // return this.httpClient.post<User>(`${env.apiUrl}/post`,user);
+    localStorage.clear();
+  }
 }
 
 
