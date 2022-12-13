@@ -24,17 +24,9 @@ export class ProfilComponent implements OnInit {
 
   @ViewChild('imgRef')
   img:ElementRef | any;
-  submitted = false;
-
   
-  constructor(private userService : UsersService, private domSanitizer: DomSanitizer, private formBuilder : FormBuilder){
+  constructor(private userService : UsersService, private domSanitizer: DomSanitizer,){
     
-    this.userEditForm = this.formBuilder.group({
-      id:[''],
-      photo: ['', [Validators.required]],
-      password: ['', [Validators.required]],
-      password2: ['', [Validators.required]],
-    });
   }
   ngOnInit(): void {
 
@@ -44,9 +36,7 @@ export class ProfilComponent implements OnInit {
       (data: any) =>{
   
           this.users = data;
-       /*    this.userActif = this.users.filter((e:any)=> e.etat == true) */
-       this.userActif = this.users.filter((e:any)=> e.etat == true && e.email == localStorage.getItem('userEmail'));
-       console.log(this.userActif)
+          this.userActif = this.users.filter((e:any)=> e.etat == true)
         }
     ); 
 
