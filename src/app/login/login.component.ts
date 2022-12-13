@@ -61,7 +61,7 @@ this.submitted = true
     }, 
     error=>{
      /*  console.log(error) */
-     
+     console.log(error)
       if(error == 'Bad Request'){
       this.errorSms ='vous etes pas dans la base de données'
       setTimeout(()=>{ this.errorSms = false}, 3000); 

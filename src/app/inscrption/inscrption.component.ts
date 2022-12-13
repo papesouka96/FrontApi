@@ -80,10 +80,10 @@ export class InscrptionComponent {
 onSubmit(){
 this.submitted = true
 console.log(new Date().toISOString())
-//  if(this.registerForm.invalid){
+ if(this.registerForm.invalid){
 
-//   return ;
-// } 
+  return ;
+} 
 
  /* /insertion sur la base de données/ */
   const user ={
@@ -113,6 +113,7 @@ console.log(new Date().toISOString())
     }, 
    /*  /controle email/ */
     error=>{
+      console.log(error)
       if(error == 'Conflict')
       this.errorMsg ='error email existant'
       setTimeout(()=>{ this.errorMsg = false}, 3001);       
