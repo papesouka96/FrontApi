@@ -3,6 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsersService } from 'src/app/services/users.service';
 /* import { Person } from './Person'; */
 import { UsernameValidator } from '../username.validator';
+import Swal from 'sweetalert2'; 
+
+
+
+
 @Component({
   selector: 'app-inscrption',
   templateUrl: './inscrption.component.html',
@@ -14,6 +19,8 @@ export class InscrptionComponent {
   submitted = false;
   verifPass:any = true;
   imgSelected:any;
+showForm: any;
+popup = false
  
 
   constructor(private userService : UsersService, private formBuilder: FormBuilder ,) {
@@ -64,7 +71,14 @@ export class InscrptionComponent {
       
     }
  }
-  
+
+ 
+   simpleAlert(){  
+    Swal.fire('INSCRIPTION RÉUSSIE AVEC SUCCÉE'); 
+    Swal.update({
+      icon: 'success'
+    }) 
+  }  
 onSubmit(){
 this.submitted = true
 console.log(new Date().toISOString())
@@ -86,24 +100,16 @@ console.log(new Date().toISOString())
    img : this.imgSelected
   }
 
-  // const user ={
-  //   prenom: "katy",
-  //   nom:"soumbane",
-  //   email: "awasoumbane281@gmail.com",
-  //   password: "1238",
-  //   roles: "admin",
-  // date_inscri: "2022-05-12",
-  // matricule: "1234",
-  //  etat: false
-  // }
+  
 
   console.log(user)
 
   this.userService.addUsers(user).subscribe(
     data=>{
       console.log(data)
-      this.closePopup()
-      
+    //  this.popup = false;
+    //  this.popup = true;
+      this.simpleAlert()
      this.ngOnInit(); 
 
     }
@@ -174,14 +180,7 @@ selectFile(event: any) { //Angular 11, for stricter type
   //   this.url = reader.result; 
   // }
 }
-displayStyle = "none";
-  
-openPopup() {
-  this.displayStyle = "block";
-}
-closePopup() {
-  this.displayStyle = "none";
-}
+
 
 }
 

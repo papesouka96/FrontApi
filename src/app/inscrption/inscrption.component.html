@@ -132,14 +132,14 @@
 </html>
  -->
 
-<div class="container w-100 p-3 col-md-5 mb-8">
+<div class="container w-100 p-3 col-md-5 mb-8" >
     <!--   controle mot de pass// -->
 
     <!--   /// -->
     <h1>FORMULAIRE D'INSCRIPTION</h1>
 
     <form id="form" class="row g-3 d-flex justify-content-center no-wrap m-2 bg-light" (submit)="onSubmit()"
-        [formGroup]="registerForm">
+        [formGroup]="registerForm" *ngIf="!showForm">
         <div *ngIf="!verifPass" class="text text-danger">
             Les mots de passe ne correspondent pas !
         </div>
@@ -258,32 +258,18 @@
         
            
 <hr />
-<button
-  style="margin: 50px; padding: 10px"
-  type="button"
-  class="btn btn-primary"
-  (click)="openPopup()">S'inscrire</button>
-<div
-  class="modal"
-  tabindex="-1"
-  role="dialog"
-  [ngStyle]="{'display':displayStyle}">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title" style="color: green;">INSCRIPTION VALIDÉE AVEC SUCCÉE</h4>
-      </div>
-      <div class="modal-body">
-        <p >Voulez-vous vous connectez ?</p>
-  
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary"(click)="onSubmit()">OK</button>
-      </div>
-    </div>
-  </div>
-</div>
-            <a href="" id="conn">CONNEXION</a>
+<button type="button"(click)="onSubmit()">s'inscrire</button>
+   
+   
+  <!--  <div class="overlay" *ngIf="popup">
+       <div class="popup">
+           <h2>BIENVENUE</h2>
+           <a class="close" (click)="onSubmit()">ok</a>
+           <div class="content" style="color:green">
+INSCRIPTION RÉUSSIE AVEC SUCCÉE</div>
+       </div>
+   </div> -->
 
+     <a  routerLink="/login" id="conn">CONNEXION ?</a>
 
         </div>
