@@ -27,6 +27,8 @@ export class UsersService {
         localStorage.setItem('currentUser', JSON.stringify(user.data?.token));
         localStorage.setItem('role', JSON.stringify(user.data?.roles));
         localStorage.setItem('img', JSON.stringify(user.data?.img));
+        localStorage.setItem('email', JSON.stringify(user.data?.email));
+
         this.currentUserSubject.next(user);
         return user;
       }));

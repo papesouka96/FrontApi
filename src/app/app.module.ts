@@ -17,6 +17,7 @@ import { LoginComponent } from './login/login.component';
 import { InscrptionComponent } from './inscrption/inscrption.component';
 import { PageArchiveComponent } from './page-archive/page-archive.component';
 import { HelperService } from './helper/helper.service';
+import { ProfilComponent } from './profil/profil.component';
  
 
 @NgModule({
@@ -28,7 +29,8 @@ import { HelperService } from './helper/helper.service';
         SimpleusersComponent,
         LoginComponent,
         InscrptionComponent,
-        PageArchiveComponent
+        PageArchiveComponent,
+        ProfilComponent
     ],
     bootstrap: [AppComponent],
     imports: [

@@ -12,5 +12,6 @@ data?:{
     token: String;
     roles: String;
     img: String;
+    email:String;
 };
 }

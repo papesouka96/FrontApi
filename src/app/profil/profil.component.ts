@@ -20,6 +20,7 @@ export class ProfilComponent implements OnInit {
   verifPass:any = true;
   registerForm!:FormGroup;
   submitted = false;
+  emailUser = localStorage.getItem('email')?.replace(/['"]+/g, '');
   
     constructor(private userService : UsersService, private formBuilder : FormBuilder){
       this.userEditForm = this.formBuilder.group({
@@ -37,7 +38,7 @@ export class ProfilComponent implements OnInit {
   
           this.users = data;
   
-          this.userActif = this.users.filter((e:any)=> e.etat == true && e.email == localStorage.getItem('userEmail'))
+          this.userActif = this.users.filter((e:any)=> e.etat == true && e.email == this.emailUser)
           console.log(this.userActif)
         }
   ); 
@@ -74,6 +75,8 @@ export class ProfilComponent implements OnInit {
    this.userService.changeRole(id,this.user).subscribe(
   
     data=>{
+  console.log(data)
+
       this.ngOnInit();
       this.showForm = false
     }
