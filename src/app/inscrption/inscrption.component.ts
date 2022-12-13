@@ -3,6 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsersService } from 'src/app/services/users.service';
 /* import { Person } from './Person'; */
 import { UsernameValidator } from '../username.validator';
+import Swal from 'sweetalert2'; 
+
+
+
+
 @Component({
   selector: 'app-inscrption',
   templateUrl: './inscrption.component.html',
@@ -64,7 +69,14 @@ export class InscrptionComponent {
       
     }
  }
-  
+
+ 
+   simpleAlert(){  
+    Swal.fire('INSCRIPTION RÉUSSIE AVEC SUCCÉE'); 
+    Swal.update({
+      icon: 'success'
+    }) 
+  }  
 onSubmit(){
 this.submitted = true
 console.log(new Date().toISOString())
@@ -86,39 +98,30 @@ console.log(new Date().toISOString())
    img : this.imgSelected
   }
 
-  // const user ={
-  //   prenom: "katy",
-  //   nom:"soumbane",
-  //   email: "awasoumbane281@gmail.com",
-  //   password: "1238",
-  //   roles: "admin",
-  // date_inscri: "2022-05-12",
-  // matricule: "1234",
-  //  etat: false
-  // }
+  
 
   console.log(user)
 
   this.userService.addUsers(user).subscribe(
     data=>{
       console.log(data)
-      this.ngOnInit();
-      
-      alert("Inscription reussie")
+    //  this.popup = false;
+    //  this.popup = true;
+      this.simpleAlert()
+     this.ngOnInit(); 
+  
     }, 
    /*  /controle email/ */
     error=>{
       if(error == 'Conflict')
       this.errorMsg ='error email existant'
-      setTimeout(()=>{ this.errorMsg = false}, 3000);       
+      setTimeout(()=>{ this.errorMsg = false}, 3001);       
     }
+
+
    );
 
-
-
-
 }
-
 
 onFileSelected(event: any) {
 
@@ -138,5 +141,7 @@ onFileSelected(event: any) {
 selectFile(event: any) { 
 
 }
+
+
 }
 

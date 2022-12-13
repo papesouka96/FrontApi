@@ -253,15 +253,25 @@
             <div class="input-control">
                
                 <label for="avatar"></label>
-                 <input type="file"
-                   id="photo" name="photo"
-                      accept="image/png, image/jpeg">
-    
-                     </div>
-                      <button type="submit" name="submit" id="button">S'INSCRIRE</button>
-                        
-                      <div class="connexion"><a routerLink="/login" id="conn">CONNEXION ?</a></div>
-                    
-     
-    </div>
-    
+                <input type="file" id="photo" name="photo" class="form-control" accept="image/png, image/jpeg"
+                    (change)="onFileSelected($event)">
+
+            </div>
+        
+           
+<hr />
+<button type="button"(click)="onSubmit()">s'inscrire</button>
+   
+   
+  <!--  <div class="overlay" *ngIf="popup">
+       <div class="popup">
+           <h2>BIENVENUE</h2>
+           <a class="close" (click)="onSubmit()">ok</a>
+           <div class="content" style="color:green">
+INSCRIPTION RÉUSSIE AVEC SUCCÉE</div>
+       </div>
+   </div> -->
+
+     <a  routerLink="/login" id="conn">CONNEXION ?</a>
+
+        </div>
