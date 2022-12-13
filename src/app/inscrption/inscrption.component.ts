@@ -115,7 +115,7 @@ console.log(new Date().toISOString())
     error=>{
       if(error == 'Conflict')
       this.errorMsg ='error email existant'
-      setTimeout(()=>{ this.errorMsg = false}, 3001);       
+      setTimeout(()=>{ this.errorMsg = false}, 3000);       
     }
 
 
