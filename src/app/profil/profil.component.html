@@ -7,78 +7,105 @@
     <title>Document</title>
 </head>
 <body>
-
-
-    <div class="container py-5 h-100" >
-        <div class="row d-flex justify-content-center align-items-center h-100 ">
-          <div class="col col-lg-10 mb-4  mb-lg-0 bg-body ">
-            <div class="card mb-3 mt-3" style="border-radius: .5rem;">
-              <div class="row g-0 ">
-                <div class="col-md-4 shadow bg-primary gradient-custom text-center text-dark"
-                  style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
-                 
-                         
-                  <!-- <img img height="100px" width="100px">    -->
-                  <!-- <img src="{{'data:image/jpg;base64,' + img}}"> -->
-                    <!-- <img  [src]="image"  alt="o" class="img-fluid my-5 rounded" style="width: 80px;" />  -->
-                    <img #imgRef>     
-                     <!-- <p class="status error">Image(s) not found...</p>  -->
-                   
-                  
-                  <h5 class="text-dark">
-                   
-                       <p class="text-dark text-bold">Mamy</p>
-                        <p class="text-dark">Sy</p>
-                  </h5>
-                  <a href="" title="Modifier">
-                    <i class="bi bi-pen-fill" id="i2">  <!--  style="font-size:28px;" --></i>
-                  </a>
-                </div>
-                <div class="col-md-8 ">
-                  <div class="card-body p-4 shadow">
-                    <h6>Information</h6>
-                    <hr class="mt-0 mb-4">
-                    <div class="row pt-1">
-                        <div class="col-6 mb-3">
-                            <h6>Email</h6>
-                            <p class="text-muted">mamys8931@gmail.com</p>
-                        </div>
-                        <div class="col-6 mb-3">
-                            <h6>Rôle</h6>
-                              <p class="text-muted">Admin</p>
-                        </div>
-                        <div class="col-6 mb-3">
-                          <h6>Matricule</h6>
-                          <p class="text-muted">MAT_1</p>
-                        </div>
-                      <div class="col-6 mb-3">
-                        <h6>Date inscription</h6>
-                        <p class="text-muted"></p>
-                      </div>
-                    </div>
-                  
-                    <hr class="mt-0 mb-4">
-                    <div class="row pt-1">
-                      <div class="col-10 mb-3">
                         
-                        <p class="text-muted">Mamy sy ©copyright 2022</p>
-                      </div>
-                    </div>
-                    <div class="d-flex justify-content-start">
-                      <a href="#!"><i class="fab fa-facebook-f fa-lg me-3"></i></a>
-                      <a href="#!"><i class="fab fa-twitter fa-lg me-3"></i></a>
-                      <a href="#!"><i class="fab fa-instagram fa-lg"></i></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-
-
-</body>
-  
+                            <div class="container py-5 h-100 " *ngIf="!showForm"  >
+                                <div class="row d-flex justify-content-center align-items-center h-100 " *ngFor="let user of userActif">
+                                  <div class="col col-lg-10 mb-4  mb-lg-0 bg-body ">
+                                    <div class="card mb-3 mt-3" style="border-radius: .5rem;">
+                                      <div class="row g-0 ">
+                                        <div class="col-md-4 shadow bg-primary gradient-custom text-center text-dark"
+                                          style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+                                         
+                                                 
+                                                   
+                                            <img src="#" alt="Avatar" class="img-fluid my-5 rounded" style="width: 80px;" /> 
+                                                  
+                                            
+                                           
+                                          
+                                          <h5 class="text-dark">
+                                           
+                                               <p class="text-dark text-bold">{{user.prenom}}</p>
+                                                <p class="text-dark">{{user.nom}}</p>
+                                          </h5>
+                                          <div ng="let user of userActif" >
+                                          <span  class="btn btn-outline-primary" title="modifier">
+                                        <i class="bi bi-pen-fill" id="i2" (click)="getUserData()"></i></span>
+                                    </div>  
+                                        </div>
+                                        <div class="col-md-8 " >
+                                          <div class="card-body p-4 shadow" >
+                                            <h6>Information</h6>
+                                            <hr class="mt-0 mb-4">
+                                            <div class="row pt-1">
+                                                <div class="col-6 mb-3">
+                                                    <h6>Email</h6>
+                                                    <p class="text-muted">{{user.email}}</p>
+                                                </div>
+                                                <div class="col-6 mb-3">
+                                                    <h6>Rôle</h6>
+                                                      <p class="text-muted">{{user.roles}}</p>
+                                                </div>
+                                                <div class="col-6 mb-3">
+                                                  <h6>Matricule</h6>
+                                                  <p class="text-muted">{{user.matricule}}</p>
+                                                </div>
+                                              <div class="col-6 mb-3">
+                                                <h6>Date inscription</h6>
+                                                <p class="text-muted">{{user.date_inscri | date}}</p>
+                                              </div>
+                                            </div>
+                                          
+                                            <hr class="mt-0 mb-4">
+                                            <div class="row pt-1">
+                                              <div class="col-10 mb-3">
+                                                
+                                                <p class="text-muted">Mamy sy ©copyright 2022</p>
+                                              </div>
+                                            </div>
+                                            <div class="d-flex justify-content-start">
+                                              <a href="#!"><i class="fab fa-facebook-f fa-lg me-3"></i></a>
+                                              <a href="#!"><i class="fab fa-twitter fa-lg me-3"></i></a>
+                                              <a href="#!"><i class="fab fa-instagram fa-lg"></i></a>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                        
+                              <form *ngIf="showForm" [formGroup]="userEditForm" (ngSubmit)="modifUsers()">
+                                <input type="text" formControlName="id"  hidden>
+                             
+                                <div class="col-md-6">
+                                  <div class="input-control">
+                                    <label for="password">password</label>
+                                 
+                                    <input [ngClass]="{'is-invalid':submitted && registerForm.controls['password'].errors}" placeholder="password"
+                                            formControlName="password" type="password" class="form-control"  id="pass1">
+                                        <div *ngIf="submitted && registerForm.controls['password'].errors" class="text-danger">
+                                            <div *ngIf="submitted && registerForm.controls['password'].errors required">
+                                              
+                                            </div>
+                                            </div> 
+                                    <label for="password2">password</label>
+                                 
+                              <input [ngClass]="{'is-invalid':submitted && registerForm.controls['password2'].errors}" placeholder="password2"
+                                      formControlName="password2" type="password" class="form-control"  id="pass2" #pass2 (change)="checkPassword()">
+                                  <div *ngIf="submitted && registerForm.controls['password2'].errors" class="text-danger">
+                                      <div *ngIf="submitted && registerForm.controls['password2'].errors required">
+                                      
+                                      </div>
+                                      </div> 
+                              </div>
+                            </div>
+                          
+                              <button type="submit" class="btn btn-primary">ENREGISTRER</button>
+                        
+                            
+                        
+                              </form>
+                        </body>
+                        </html> 
