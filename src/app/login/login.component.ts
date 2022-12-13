@@ -15,6 +15,7 @@ export class LoginComponent {
   registerForm!:FormGroup;
   title = 'angularvalidate';
   submitted = false;
+  errorSms:any
 
   constructor(private userService : UsersService, private formBuilder: FormBuilder ,private route: Router) {
     
@@ -47,19 +48,26 @@ this.submitted = true
   
   }
 
-  /* console.log(user)*/
+  // console.log(user)
 
   this.userService.getConnexion(user).subscribe(
     data=>{
-      console.log(data.data?.roles)
+      console.log(data)
       if (data.data?.roles == "Administrateur" || data.data?.roles == "admin") {
           this.route.navigateByUrl('admin')
       } else {
         this.route.navigateByUrl('user')
       }
+    }, 
+    error=>{
+     /*  console.log(error) */
+     
+      if(error == 'Bad Request'){
+      this.errorSms ='vous etes pas dans la base de données'
+      setTimeout(()=>{ this.errorSms = false}, 3000); 
+    }
     }
    );
- 
 
 
 

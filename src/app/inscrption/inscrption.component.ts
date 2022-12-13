@@ -105,7 +105,8 @@ console.log(new Date().toISOString())
       this.ngOnInit();
       
       alert("Inscription reussie")
-    },
+    }, 
+   /*  /controle email/ */
     error=>{
       if(error == 'Conflict')
       this.errorMsg ='error email existant'
