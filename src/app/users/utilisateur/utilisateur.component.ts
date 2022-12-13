@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgModel, Validators } from '@angular/forms';
 import { UsersService } from 'src/app/services/users.service';
+import Swal from 'sweetalert2'; 
 
 @Component({
   selector: 'app-utilisateur',
@@ -26,6 +27,33 @@ user = []; userActif:any = [];
       email: ['', [Validators.required]],
     });
   }
+  simpleAlert(){  
+    Swal.fire('INSCRIPTION RÉUSSIE AVEC SUCCÉE'); 
+    
+    Swal.fire({  
+      title: 'Voulez-vous vraiment effectuer cette action?',  
+      text: 'Si oui met ok',  
+      icon: 'warning',  
+      showCancelButton: true,  
+      confirmButtonText: 'ok!',  
+      cancelButtonText: 'Annuler'  
+    }).then((result) => {  
+      if (result.value) {  
+        Swal.fire({
+         icon:'success' 
+         }    
+             
+        )  
+      }
+      // else if (result.dismiss === Swal.DismissReason.cancel) {  
+      //   Swal.fire(  
+      //     'Annuler',    
+      //     'error'  
+      //   )  
+      // }  
+    })  
+  }  
+ 
 
 ngOnInit(): void {
 
@@ -57,14 +85,15 @@ changeRole=(id:any,roles:any)=> {
 
  }
 
- if (confirm("Changer de role")) {
+
   this.userService.changeRole(id,user).subscribe(
 
     data=>{
+      this.simpleAlert()
       this.ngOnInit();
     }
    );
- }
+ 
 }
 
 
@@ -77,18 +106,21 @@ etat == "false" ? etat = true : etat = false
 
  }
 
- if (confirm("Archiver cet utilisateur")) {
+
     this.userService.modifUsers(id,user).subscribe(
 
       data=>{
+
+    this.simpleAlert();
         this.ngOnInit();
       }
    );
- }
+ 
 }
 
 getUserData(id:any,email:any,prenom:any,nom:any){
-  if (confirm("Voulez-vous modifier")) {
+
+  this.simpleAlert();
     this.showForm = true;
   this.userEditForm = this.formBuilder.group({
       id:[id],
@@ -96,7 +128,7 @@ getUserData(id:any,email:any,prenom:any,nom:any){
       nom: [nom, [Validators.required]],
       email: [email, [Validators.required]],
     });
-  }
+
   
 }
 
