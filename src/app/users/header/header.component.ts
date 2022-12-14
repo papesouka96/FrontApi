@@ -10,7 +10,8 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class HeaderComponent implements OnInit {
   
-image:any; roles:any; img:any
+image:any; roles:any; img:any; userActif:any; users:any;
+emailUser = localStorage.getItem('email')?.replace(/['"]+/g, '');
 
 
 constructor(private userService : UsersService, private sanitizer: DomSanitizer, private router: Router){
@@ -28,11 +29,25 @@ ngOnInit(): void {
  this.image=localStorage.getItem('img')
   const imgRead = this.convertFile(<any>this.image?.replace(/['"]+/g, '')) 
   this.img  = this.sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(imgRead))
-  console.log(this.img)
+
+
+  
+
+  this.userService.getUsers().subscribe(
+    data => {
+
+      this.users = data;
+      this.userActif = this.users.filter((e: any) => e.etat == true && e.email == this.emailUser)
+     
+    }
+  );
+
 }
 logOut(){
-// this.userService.getLogOut();
+this.userService.getLogOut();
+// this.ngOnInit()
 this.router.navigateByUrl('login')
+
 }
 
 convertFile(str:any) {

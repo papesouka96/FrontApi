@@ -100,7 +100,6 @@ console.log(new Date().toISOString())
 
   
 
-  console.log(user)
 
   this.userService.addUsers(user).subscribe(
     data=>{

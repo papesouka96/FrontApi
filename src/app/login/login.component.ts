@@ -53,7 +53,7 @@ this.submitted = true
   this.userService.getConnexion(user).subscribe(
     data=>{
       console.log(data)
-      if (data.data?.roles == "Administrateur" || data.data?.roles == "admin") {
+      if (data.data?.roles.replace(/['"]+/g, '') == "Administrateur" || data.data?.roles.replace(/['"]+/g, '') == "admin") {
           this.route.navigateByUrl('admin')
       } else {
         this.route.navigateByUrl('user')
