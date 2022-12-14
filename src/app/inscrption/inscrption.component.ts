@@ -20,6 +20,7 @@ export class InscrptionComponent {
   verifPass:any = true;
   imgSelected:any;
   errorMsg:any;
+  defaultImg=null;
 
   constructor(private userService : UsersService, private formBuilder: FormBuilder ,) {
     this.registerForm = this.formBuilder.group({
@@ -95,7 +96,7 @@ console.log(new Date().toISOString())
    matricule : Math.random().toString(26).slice(2),  
    date_inscri: new Date().toISOString(),
    etat: true,
-   img : this.imgSelected
+   img : this.imgSelected | <any>null
   }
 
   
@@ -132,7 +133,7 @@ onFileSelected(event: any) {
       reader.readAsDataURL(file);
       reader.onload = () => {
         this.imgSelected = reader.result; 
-        console.log(this.imgSelected);
+        // console.log(this.imgSelected);
       };
     }
 

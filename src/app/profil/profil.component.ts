@@ -19,7 +19,7 @@ export class ProfilComponent implements OnInit {
   totalUser: any;
   searchText: any;
   user: any; userActif: any;
-  verifPass: any = true;
+  verifPass: any = false;
   registerForm!: FormGroup;
   submitted = false;
   emailUser = localStorage.getItem('email')?.replace(/['"]+/g, '');
@@ -66,7 +66,7 @@ export class ProfilComponent implements OnInit {
     this.image = localStorage.getItem('img')
     const imgRead = this.convertFile(<any>this.image?.replace(/['"]+/g, ''))
     this.img = this.sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(imgRead))
-    console.log(this.img)
+    console.log(this.image)
  
 }
 
@@ -75,17 +75,16 @@ modifUsers(){
 
   const id = this.userEditForm.value.id;
   const user = {
-    photo: this.userEditForm.value.photo,
+    // photo: this.userEditForm.value.photo,
     password: this.userEditForm.value.password,
-    password2: this.userEditForm.value.password2
+    // password2: this.userEditForm.value.password2
   }
   console.log(user)
 
-  this.userService.changeRole(id, this.user).subscribe(
+  this.userService.changeRole(id,user).subscribe(
 
     data => {
       console.log(data)
-
       this.ngOnInit();
       this.showForm = false
     }
@@ -94,13 +93,13 @@ modifUsers(){
 
 checkPassword = () => {
 
-  let pass1 = (<HTMLInputElement>document.getElementById("pass1")).value;
-  let pass2 = (<HTMLInputElement>document.getElementById("pass2")).value;
+  let pass1 = this.userEditForm.value.password//(<HTMLInputElement>document.getElementById("pass1")).value;
+  let pass2 = this.userEditForm.value.password2//(<HTMLInputElement>document.getElementById("pass2")).value;
 
   console.log(pass1 != pass2)
 
   if (pass1 != pass2) {
-    this.verifPass = false;
+    this.verifPass = true;
     this.registerForm = this.formBuilder.group(
       {
 
@@ -109,8 +108,9 @@ checkPassword = () => {
 
       })
 
-    setTimeout(() => { this.verifPass = true }, 3001);
+    setTimeout(() => { this.verifPass = false }, 3001);
   }
+  
 }
 
 
