@@ -20,6 +20,7 @@ export class InscrptionComponent {
   verifPass:any = true;
   imgSelected:any;
   errorMsg:any;
+  spin= false;
 
   constructor(private userService : UsersService, private formBuilder: FormBuilder ,) {
     this.registerForm = this.formBuilder.group({
@@ -79,9 +80,9 @@ export class InscrptionComponent {
   }  
 onSubmit(){
 this.submitted = true
-console.log(new Date().toISOString())
+  this.spin = true
  if(this.registerForm.invalid){
-
+  this.spin = false
   return ;
 } 
 
@@ -106,6 +107,7 @@ console.log(new Date().toISOString())
       console.log(data)
     //  this.popup = false;
     //  this.popup = true;
+    this.spin = false;
       this.simpleAlert()
      this.ngOnInit(); 
   
@@ -114,7 +116,8 @@ console.log(new Date().toISOString())
     error=>{
       console.log(error)
       if(error == 'Conflict')
-      this.errorMsg ='error email existant'
+      this.errorMsg ='error email existant';
+      this.spin = false
       setTimeout(()=>{ this.errorMsg = false}, 3001);       
     }
 

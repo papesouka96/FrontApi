@@ -260,7 +260,14 @@
         
            
 <hr />
-<button type="button"(click)="onSubmit()" id="button">s'inscrire</button>
+<!-- <div class="spinner-border text-warning" role="status"> -->
+ 
+
+
+<button type="button"(click)="onSubmit()" id="button" >
+    <span class="visually" *ngIf="!spin" style="color: white;">Inscription</span>
+    <span class="spinner-border spinner-border-sm" *ngIf="spin" role="status" aria-hidden="false" style="color: white;"></span>
+</button>
    
    
   <!--  <div class="overlay" *ngIf="popup">
