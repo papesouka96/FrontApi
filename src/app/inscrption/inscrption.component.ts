@@ -131,6 +131,7 @@ onFileSelected(event: any) {
       let file = event.target.files[0];
       reader.readAsDataURL(file);
       reader.onload = () => {
+        
         this.imgSelected = reader.result; 
         console.log(this.imgSelected);
       };
