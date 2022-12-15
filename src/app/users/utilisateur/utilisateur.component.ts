@@ -147,15 +147,18 @@ getUserData(id:any,email:any,prenom:any,nom:any){
 
 
 modifUsers (){
-
-if(this.users.filter((e:any)=> e.email == this.userEditForm.value.email)){
-  this.emailExiste = "Email existe déjà";
-  setTimeout(() => {
-    this.emailExiste=""
-  }, 2000);
-  return;
+  const id =  this.userEditForm.value.id;
+  for (const iterator of this.users) {
+  console.log(iterator.email  )
+  if(iterator.email == this.userEditForm.value.email && iterator._id != id){
+    this.emailExiste = "Email existe déjà";
+    setTimeout(() => {
+      this.emailExiste=""
+    }, 2000);
+    return;
+  }
 }
-const id =  this.userEditForm.value.id;
+
  const user ={
   nom : this.userEditForm.value.nom,
   prenom: this.userEditForm.value.prenom,
