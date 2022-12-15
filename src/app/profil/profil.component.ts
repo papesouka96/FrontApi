@@ -81,12 +81,12 @@ modifUsers(){
   }
   console.log(user)
 
-  this.userService.changeRole(id,user).subscribe(
+  this.userService.modifUsers(id,user).subscribe(
 
     data => {
       console.log(data)
-      this.ngOnInit();
-      this.showForm = false
+      this.userService.getLogOut();
+      this.router.navigateByUrl('login')
     }
   );
 }
