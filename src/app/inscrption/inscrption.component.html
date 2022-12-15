@@ -204,7 +204,7 @@
                 <select id="role" name="roles"  class="form-select p-3 rounded-0" [ngClass]="{'is-invalid':submitted && registerForm.controls['email'].errors}" placeholder="roles"
                 formControlName="roles" type="text" class="form-control"placeholder="Role">
                   <option value=""></option>
-                  <option value="Administrateur">Admin</option>
+                  <option value="Admin">Admin</option>
                   <option value="Utilisateur">Utilisateur</option>
                 </select>
                 <div *ngIf="submitted && registerForm.controls['roles'].errors" class="text-danger">
