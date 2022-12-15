@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user';
 import { env } from 'src/env';
 import { BehaviorSubject, map } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -11,8 +12,12 @@ import { BehaviorSubject, map } from 'rxjs';
 export class UsersService {
   private currentUserSubject: BehaviorSubject<User>;
 
-  constructor(private httpClient:HttpClient) {
+  constructor(private httpClient:HttpClient, private router: Router) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse((localStorage.getItem('currentUser')!)));
+    if (this.currentUserSubject.value == null) {
+      this.getLogOut();
+      this.router.navigateByUrl('login')
+    }
   }
 
   public get currentUserValue(): User {
@@ -27,6 +32,8 @@ export class UsersService {
         localStorage.setItem('currentUser', JSON.stringify(user.data?.token));
         localStorage.setItem('role', JSON.stringify(user.data?.roles));
         localStorage.setItem('img', JSON.stringify(user.data?.img));
+        localStorage.setItem('email', JSON.stringify(user.data?.email));
+
         this.currentUserSubject.next(user);
         return user;
       }));
@@ -58,6 +65,11 @@ export class UsersService {
 
   addUsers(user: User){
     return this.httpClient.post<User>(`${env.apiUrl}/post`,user);
+  }
+
+  getLogOut(){
+    // return this.httpClient.post<User>(`${env.apiUrl}/post`,user);
+    localStorage.clear();
   }
 }
 

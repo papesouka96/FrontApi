@@ -20,6 +20,7 @@ export class InscrptionComponent {
   verifPass:any = true;
   imgSelected:any;
   errorMsg:any;
+  spin= false;
 
   constructor(private userService : UsersService, private formBuilder: FormBuilder ,) {
     this.registerForm = this.formBuilder.group({
@@ -79,11 +80,11 @@ export class InscrptionComponent {
   }  
 onSubmit(){
 this.submitted = true
-console.log(new Date().toISOString())
-//  if(this.registerForm.invalid){
-
-//   return ;
-// } 
+  this.spin = true
+ if(this.registerForm.invalid){
+  this.spin = false
+  return ;
+} 
 
  /* /insertion sur la base de données/ */
   const user ={
@@ -95,24 +96,25 @@ console.log(new Date().toISOString())
    matricule : Math.random().toString(26).slice(2),  
    date_inscri: new Date().toISOString(),
    etat: true,
-   img : this.imgSelected
+   img : this.imgSelected | <any>null
   }
 
   
 
-  console.log(user)
 
   this.userService.addUsers(user).subscribe(
     data=>{
       console.log(data)
     //  this.popup = false;
     //  this.popup = true;
+    this.spin = false;
       this.simpleAlert()
      this.ngOnInit(); 
   
     }, 
    /*  /controle email/ */
     error=>{
+      console.log(error)
       if(error == 'Conflict')
       this.errorMsg ='error email existant'
       setTimeout(()=>{ this.errorMsg = false}, 3000);       
@@ -133,7 +135,7 @@ onFileSelected(event: any) {
       reader.onload = () => {
         
         this.imgSelected = reader.result; 
-        console.log(this.imgSelected);
+        // console.log(this.imgSelected);
       };
     }
 
