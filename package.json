@@ -6,7 +6,14 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "compodoc": "npx compodoc -p src/tsconfig.app.json",
+    "compodoc:serve": "npx compodoc -p src/tsconfig.app.json -s",
+    "compodoc:serve:watch": "npx compodoc -p src/tsconfig.app.json -s -w",
+    "compodoc1": "npx compodoc -p tsconfig.doc.json",
+    "compodoc2":"npx compodoc -p ./tsconfig.json"
+    
+    
   },
   "private": true,
   "dependencies": {
