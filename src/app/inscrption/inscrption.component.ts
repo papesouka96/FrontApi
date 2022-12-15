@@ -98,7 +98,7 @@ this.submitted = true
    matricule : Math.random().toString(26).slice(2),  
    date_inscri: new Date().toISOString(),
    etat: true,
-   img : this.imgSelected | <any>null
+   img : this.imgSelected //| <any>null
   }
 
   
