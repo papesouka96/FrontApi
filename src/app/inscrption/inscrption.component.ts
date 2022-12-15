@@ -4,6 +4,7 @@ import { UsersService } from 'src/app/services/users.service';
 /* import { Person } from './Person'; */
 import { UsernameValidator } from '../username.validator';
 import Swal from 'sweetalert2'; 
+import { Router } from '@angular/router';
 
 
 
@@ -20,8 +21,10 @@ export class InscrptionComponent {
   verifPass:any = true;
   imgSelected:any;
   errorMsg:any;
+  spin= false;
+  imgHeight= false;
 
-  constructor(private userService : UsersService, private formBuilder: FormBuilder ,) {
+  constructor(private userService : UsersService, private formBuilder: FormBuilder, private router: Router) {
     this.registerForm = this.formBuilder.group({
       id:[''],
       prenom: ['', [Validators.required,UsernameValidator.cannotContainSpace]],
@@ -79,11 +82,11 @@ export class InscrptionComponent {
   }  
 onSubmit(){
 this.submitted = true
-console.log(new Date().toISOString())
-//  if(this.registerForm.invalid){
-
-//   return ;
-// } 
+  this.spin = true
+ if(this.registerForm.invalid){
+  this.spin = false
+  return ;
+} 
 
  /* /insertion sur la base de données/ */
   const user ={
@@ -95,27 +98,34 @@ console.log(new Date().toISOString())
    matricule : Math.random().toString(26).slice(2),  
    date_inscri: new Date().toISOString(),
    etat: true,
-   img : this.imgSelected
+   img : this.imgSelected | <any>null
   }
 
   
 
-  console.log(user)
 
   this.userService.addUsers(user).subscribe(
     data=>{
-      console.log(data)
+      // console.log(data)
     //  this.popup = false;
     //  this.popup = true;
+      this.spin = false;
       this.simpleAlert()
-     this.ngOnInit(); 
+      this.router.navigateByUrl('login'); 
+      
   
     }, 
    /*  /controle email/ */
     error=>{
+      console.log(error)
       if(error == 'Conflict')
-      this.errorMsg ='error email existant'
-      setTimeout(()=>{ this.errorMsg = false}, 3001);       
+      { 
+        this.errorMsg ='error email existant';
+          this.spin = false
+          setTimeout(()=>{ this.errorMsg = false}, 3000);
+      }else if(error == 'Payload too large')
+        this.imgHeight= true;  
+        setTimeout(()=>{ this.imgHeight = false}, 3000);
     }
 
 
@@ -132,7 +142,7 @@ onFileSelected(event: any) {
       reader.readAsDataURL(file);
       reader.onload = () => {
         this.imgSelected = reader.result; 
-        console.log(this.imgSelected);
+        // console.log(this.imgSelected);
       };
     }
 

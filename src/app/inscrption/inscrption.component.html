@@ -143,6 +143,9 @@
           <div *ngIf="!verifPass" class="d-flex justify-content-center text text-danger" id="">
             <span>les deux password ne correspondent pas!</span>
           </div>
+          <div *ngIf="imgHeight" class="d-flex justify-content-center text text-danger" id="">
+            <span>La taille de l'image est trop grand</span>
+          </div>
           <div *ngIf="errorMsg!" class="d-flex justify-content-center text text-danger" id="">
             <span>email deja existe!</span>
           </div>
@@ -260,7 +263,14 @@
         
            
 <hr />
-<button id="button" type="button"(click)="onSubmit()">s'inscrire</button>
+<!-- <div class="spinner-border text-warning" role="status"> -->
+ 
+
+
+<button type="button"(click)="onSubmit()" id="button" >
+    <span class="visually" *ngIf="!spin" style="color: white;">Inscription</span>
+    <span class="spinner-border spinner-border-sm" *ngIf="spin" role="status" aria-hidden="false" style="color: white;"></span>
+</button>
    
    
   <!--  <div class="overlay" *ngIf="popup">

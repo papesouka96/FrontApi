@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgModel, Validators } from '@angular/forms';
 import { UsersService } from 'src/app/services/users.service';
+import Swal from 'sweetalert2'; 
 
 @Component({
   selector: 'app-page-archive',
@@ -47,11 +48,36 @@ retrieveData(){
      this.totalUser = data.length; 
   })
 }
-
+simpleAlert(){  
+  Swal.fire('INSCRIPTION RÉUSSIE AVEC SUCCÉE'); 
+  
+  Swal.fire({  
+    title: 'Voulez-vous vraiment desarchiver cette utilisateur?',  
+    text: 'Si oui met ok',  
+    icon: 'warning',  
+    showCancelButton: true,  
+    confirmButtonText: 'ok!',  
+    cancelButtonText: 'Annuler'  
+  }).then((result) => {  
+    if (result.value) {  
+      Swal.fire({
+       icon:'success' 
+       }    
+           
+      )  
+    }
+    // else if (result.dismiss === Swal.DismissReason.cancel) {  
+    //   Swal.fire(  
+    //     'Annuler',    
+    //     'error'  
+    //   )  
+    // }  
+  })  
+}  
 
 ddeleteId=(id:any,etat:any)=> {
 
-  if (confirm('Voule-vouz désarchiver')) {
+
     etat == true ? etat = false : etat = true
   
    const user ={
@@ -62,10 +88,11 @@ ddeleteId=(id:any,etat:any)=> {
    this.userService.modifUsers(id,user).subscribe(
   
     data=>{
+      this.simpleAlert();
       this.ngOnInit();
     }
    );
-  }
+  
   
 }
 
