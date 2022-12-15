@@ -122,10 +122,10 @@ this.submitted = true
       { 
         this.errorMsg ='error email existant';
           this.spin = false
-          setTimeout(()=>{ this.errorMsg = false}, 3000);
+          setTimeout(()=>{ this.errorMsg = false}, 3001);
       }else if(error == 'Payload too large')
         this.imgHeight= true;  
-        setTimeout(()=>{ this.imgHeight = false}, 3000);
+        setTimeout(()=>{ this.imgHeight = false}, 3001);
     }
 
 

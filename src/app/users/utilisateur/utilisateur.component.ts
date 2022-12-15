@@ -37,7 +37,7 @@ ngOnInit(): void {
 
         this.users = data;
 
-        this.userActif = this.users.filter((e:any)=> e.etat == true && e.email !=localStorage.getItem('email')?.replace(/['"]+/g, ''))
+        this.userActif = this.users.filter((e:any)=> e.etat == true && e.email != localStorage.getItem('email')?.replace(/['"]+/g, ''))
         
       }
 ); 
