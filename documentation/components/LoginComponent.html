@@ -134,6 +134,9 @@
                                 <a href="#registerForm" >registerForm</a>
                             </li>
                             <li>
+                                <a href="#spin" >spin</a>
+                            </li>
+                            <li>
                                 <a href="#submitted" >submitted</a>
                             </li>
                             <li>
@@ -180,7 +183,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/login/login.component.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/login/login.component.ts:19</a></div>
                             </td>
                         </tr>
 
@@ -271,8 +274,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="23"
-                            class="link-to-prism">src/app/login/login.component.ts:23</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="25"
+                            class="link-to-prism">src/app/login/login.component.ts:25</a></div>
                 </td>
             </tr>
 
@@ -308,8 +311,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">src/app/login/login.component.ts:35</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">src/app/login/login.component.ts:37</a></div>
                 </td>
             </tr>
 
@@ -377,6 +380,31 @@
                     <tr>
                         <td class="col-md-4">
                                 <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/login/login.component.ts:15</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="spin"></a>
+                    <span class="name">
+                        <span ><b>spin</b></span>
+                        <a href="#spin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/login/login.component.ts:19</a></div>
                         </td>
                     </tr>
 
@@ -462,7 +490,9 @@ export class LoginComponent {
   registerForm!:FormGroup;
   title &#x3D; &#x27;angularvalidate&#x27;;
   submitted &#x3D; false;
-  errorSms:any
+  errorSms:any;
+  spin&#x3D; false;
+
 
   constructor(private userService : UsersService, private formBuilder: FormBuilder ,private route: Router) {
     
@@ -481,9 +511,10 @@ export class LoginComponent {
   
 onSubmit(){
 this.submitted &#x3D; true
+this.spin &#x3D; true
 
  if(this.registerForm.invalid){
-
+  this.spin &#x3D; false
   return ;
 } 
 
@@ -500,17 +531,20 @@ this.submitted &#x3D; true
   this.userService.getConnexion(user).subscribe(
     data&#x3D;&gt;{
       console.log(data)
-      if (data.data?.roles &#x3D;&#x3D; &quot;Administrateur&quot; || data.data?.roles &#x3D;&#x3D; &quot;admin&quot;) {
+      if (data.data?.roles.replace(/[&#x27;&quot;]+/g, &#x27;&#x27;) &#x3D;&#x3D; &quot;Administrateur&quot; || data.data?.roles.replace(/[&#x27;&quot;]+/g, &#x27;&#x27;) &#x3D;&#x3D; &quot;admin&quot;) {
           this.route.navigateByUrl(&#x27;admin&#x27;)
+          this.spin &#x3D; true
       } else {
         this.route.navigateByUrl(&#x27;user&#x27;)
+        this.spin &#x3D; true
       }
     }, 
     error&#x3D;&gt;{
      /*  console.log(error) */
-     
+     console.log(error)
       if(error &#x3D;&#x3D; &#x27;Bad Request&#x27;){
       this.errorSms &#x3D;&#x27;vous etes pas dans la base de données&#x27;
+      this.spin &#x3D; false
       setTimeout(()&#x3D;&gt;{ this.errorSms &#x3D; false}, 3000); 
     }
     }
@@ -571,8 +605,12 @@ this.submitted &#x3D; true
 
             &lt;/div&gt;
         &lt;/div&gt;
-        &lt;input type&#x3D;&quot;submit&quot; class&#x3D;&quot;col-4 btn btn-primary&quot; value&#x3D;&quot;Connexion&quot; name&#x3D;&quot;button&quot; &gt;
-        &lt;a  routerLink&#x3D;&quot;/inscription&quot;&gt;S&#x27;INSCRIRE&lt;/a&gt;
+        
+        &lt;button type&#x3D;&quot;submit&quot; id&#x3D;&quot;button&quot;  class&#x3D;&quot;btn btn-primary&quot;&gt;
+            &lt;span class&#x3D;&quot;visually&quot; *ngIf&#x3D;&quot;!spin&quot; style&#x3D;&quot;color: white;&quot;&gt;Connexion&lt;/span&gt;
+            &lt;span class&#x3D;&quot;spinner-border spinner-border-sm&quot; *ngIf&#x3D;&quot;spin&quot; role&#x3D;&quot;status&quot; aria-hidden&#x3D;&quot;false&quot; style&#x3D;&quot;color: white;&quot;&gt;&lt;/span&gt;
+        &lt;/button&gt;
+        &lt;a routerLink&#x3D;&quot;/inscriptions&quot;&gt;S&#x27;INSCRIRE&lt;/a&gt;
     &lt;/form&gt;
 &lt;/div&gt;
 </code></pre>
@@ -589,6 +627,7 @@ this.submitted &#x3D; true
     padding: 35px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
+   
 }
 
 #email {
@@ -602,9 +641,10 @@ this.submitted &#x3D; true
 }
 
 #button {
+    font-size: 20px;
     height: 50px;
-    width: 50%;
-    background-color: blue;
+    width: 25%;
+   
 }
 
 h1 {
@@ -644,7 +684,8 @@ p {
 }
 
 #fond {
-font-size: 1.2rem;}</code></pre>
+font-size: 1.2rem;}
+</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-tree">
@@ -672,7 +713,7 @@ font-size: 1.2rem;}</code></pre>
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="container p-3 col-md-5   bg-light" id="container">    <!-- <h1>FORMULAIRE DE CONNEXION</h1> -->    <form id="form" class="row g-3 d-flex justify-content-center no-wrap m-2 bg-light" (submit)="onSubmit()"        [formGroup]="registerForm">        <div *ngIf="errorSms!" class="d-flex justify-content-center text text-danger" id="fond">            <span>vous n\'etes pas dans la base de données!</span>          </div>        <div class="col-md-12">            <div class="input-control">                <label for="email">Email</label>                <input id="email" name="email" class=" p-3 rounded-0" type="text" id="email" name="email"                    class=" p-3 rounded-0" type="text" id="email" name="email" class=" p-3 rounded-0" type="text"                    [ngClass]="{\'is-invalid\':submitted && registerForm.controls[\'email\'].errors}" placeholder="email"                    formControlName="email" type="email" class="form-control" id="email" name="email">                <div *ngIf="submitted && registerForm.controls[\'email\'].errors" class="text-danger">                    <div *ngIf="submitted && registerForm.controls[\'email\'].errors [\'required\']">                        Ce champ est require                    </div>                    <div *ngIf="submitted && registerForm.controls[\'email\'].errors[\'email\']">                        Email Address incorrect                    </div>                </div>            </div>        </div>        <div class="col-md-12">            <div class="input-control">                <label for="password">Password</label>                <input name="password" class=" p-3 rounded-0" type="password" id="pass1" name="password"                    class=" p-3 rounded-0" type="password" placeholder="password"                    [ngClass]="{\'is-invalid\':submitted && registerForm.controls[\'password\'].errors}"                    formControlName="password" type="password" class="form-control" id="pass2">                <div *ngIf="submitted && registerForm.controls[\'password\'].errors" class="text-danger">                    <div *ngIf="submitted && registerForm.controls[\'password\'].errors required">                        Ce champ est require                    </div>                    <div *ngIf="submitted && registerForm.controls[\'password\'].errors[\'minlength\']">                        password doit contenir au minimum 8 caractères                    </div>                </div>            </div>        </div>        <input type="submit" class="col-4 btn btn-primary" value="Connexion" name="button" >        <a  routerLink="/inscription">S\'INSCRIRE</a>    </form></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="container p-3 col-md-5   bg-light" id="container">    <!-- <h1>FORMULAIRE DE CONNEXION</h1> -->    <form id="form" class="row g-3 d-flex justify-content-center no-wrap m-2 bg-light" (submit)="onSubmit()"        [formGroup]="registerForm">        <div *ngIf="errorSms!" class="d-flex justify-content-center text text-danger" id="fond">            <span>vous n\'etes pas dans la base de données!</span>          </div>        <div class="col-md-12">            <div class="input-control">                <label for="email">Email</label>                <input id="email" name="email" class=" p-3 rounded-0" type="text" id="email" name="email"                    class=" p-3 rounded-0" type="text" id="email" name="email" class=" p-3 rounded-0" type="text"                    [ngClass]="{\'is-invalid\':submitted && registerForm.controls[\'email\'].errors}" placeholder="email"                    formControlName="email" type="email" class="form-control" id="email" name="email">                <div *ngIf="submitted && registerForm.controls[\'email\'].errors" class="text-danger">                    <div *ngIf="submitted && registerForm.controls[\'email\'].errors [\'required\']">                        Ce champ est require                    </div>                    <div *ngIf="submitted && registerForm.controls[\'email\'].errors[\'email\']">                        Email Address incorrect                    </div>                </div>            </div>        </div>        <div class="col-md-12">            <div class="input-control">                <label for="password">Password</label>                <input name="password" class=" p-3 rounded-0" type="password" id="pass1" name="password"                    class=" p-3 rounded-0" type="password" placeholder="password"                    [ngClass]="{\'is-invalid\':submitted && registerForm.controls[\'password\'].errors}"                    formControlName="password" type="password" class="form-control" id="pass2">                <div *ngIf="submitted && registerForm.controls[\'password\'].errors" class="text-danger">                    <div *ngIf="submitted && registerForm.controls[\'password\'].errors required">                        Ce champ est require                    </div>                    <div *ngIf="submitted && registerForm.controls[\'password\'].errors[\'minlength\']">                        password doit contenir au minimum 8 caractères                    </div>                </div>            </div>        </div>                <button type="submit" id="button"  class="btn btn-primary">            <span class="visually" *ngIf="!spin" style="color: white;">Connexion</span>            <span class="spinner-border spinner-border-sm" *ngIf="spin" role="status" aria-hidden="false" style="color: white;"></span>        </button>        <a routerLink="/inscriptions">S\'INSCRIRE</a>    </form></div></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'InscrptionComponent', 'selector': 'app-inscrption'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'ModificationComponent', 'selector': 'app-modification'},{'name': 'PageArchiveComponent', 'selector': 'app-page-archive'},{'name': 'ProfilComponent', 'selector': 'app-profil'},{'name': 'SimpleusersComponent', 'selector': 'app-simpleusers'},{'name': 'UtilisateurComponent', 'selector': 'app-utilisateur'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'LoginComponent'};
