@@ -56,7 +56,7 @@ this.spin = true
   this.userService.getConnexion(user).subscribe(
     data=>{
       console.log(data)
-      if (data.data?.roles.replace(/['"]+/g, '') == "Administrateur" || data.data?.roles.replace(/['"]+/g, '') == "admin") {
+      if (data.data?.roles.replace(/['"]+/g, '') == "Admin" || data.data?.roles.replace(/['"]+/g, '') == "admin") {
           this.route.navigateByUrl('admin')
           this.spin = true
       } else {
